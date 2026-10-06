@@ -6,3 +6,6 @@ playwright-report
 .DS_Store
 .sheets
 .cache
+design-handoff
+
+design-handoff/
