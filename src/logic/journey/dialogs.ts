@@ -1,5 +1,6 @@
 // Confirmation dialogs: leave registration, leave the test, submit the test, cancel an interview slot.
 import type { Ctx } from './context';
+import { FS } from '../styles';
 
 export function dialogVals(c: Ctx, stepsLeft: number, answered: number) {
   const { s, t, app, isLr } = c;
@@ -20,7 +21,7 @@ export function dialogVals(c: Ctx, stepsLeft: number, answered: number) {
         title: t.cancelTitle, body: t.cancelBody, hasReasons: true,
         reasons: t.reasons.map((label, k) => ({
           label, pick: () => c.set({ reason: k }),
-          style: 'min-height:46px;padding:0 16px;border-radius:999px;cursor:pointer;font-weight:800;font-size:15px;' + (s.reason === k ? 'background:#E91E63;color:#FFFFFF;border:2px solid #BE185D;' : 'background:#FFFFFF;color:#334155;border:2px solid #E2E8F0;'),
+          style: 'min-height:46px;padding:0 16px;border-radius:999px;cursor:pointer;font-weight:800;font-size:' + FS.body + ';' + (s.reason === k ? 'background:#E91E63;color:#FFFFFF;border:2px solid #BE185D;' : 'background:#FFFFFF;color:#334155;border:2px solid #E2E8F0;'),
         })),
         primary: t.cancelYes, primaryDisabled: s.reason === null,
         primaryOn: () => app.go('slot', { time: null, ...(isLr ? { bookedLr: null } : { bookedCfr: null }) }),

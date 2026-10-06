@@ -29,7 +29,7 @@ export function MicroWin({ v }: { v: V }) {
                 <path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z" fill="#F472B6" />
               </svg>
             </div>
-            <div class="pop" style={`margin-top: 26px; font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.15; color: ${v.toastUi.text}; text-align: center; padding: 0 28px; animation-delay: .1s`}>
+            <div class="pop" style={`margin-top: 26px; font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: var(--fs-display); line-height: 1.15; color: ${v.toastUi.text}; text-align: center; padding: 0 28px; animation-delay: .1s`}>
               {v.toastText}
             </div>
             <img class="rise" src="/media/asha.webp" alt="" style={v.L.toastAsha} />

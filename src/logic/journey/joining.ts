@@ -2,6 +2,7 @@
 import { DAY, joinDay } from '../dates';
 import type { Ctx } from './context';
 import { bookingLabel } from './rounds';
+import { FS } from '../styles';
 
 type Status = 'done' | 'now' | 'lock';
 const STATUS_BG: Record<Status, string> = { done: '#10B981', now: '#E91E63', lock: '#CBD5E1' };
@@ -24,7 +25,7 @@ function historyRows(c: Ctx) {
   return rows.map(([title, sub, st, d], k) => ({
     title, sub, d,
     status: st === 'done' ? t.chipDone : st === 'now' ? t.chipNow : t.chipLocked,
-    chip: 'font-size:12px;font-weight:800;padding:2px 9px;border-radius:999px;' + STATUS_CHIP[st],
+    chip: 'font-size:' + FS.caption + ';font-weight:800;padding:2px 9px;border-radius:999px;' + STATUS_CHIP[st],
     dot: 'width:40px;height:40px;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:' + STATUS_BG[st] + ';' + (st === 'now' ? 'box-shadow:0 0 0 5px rgba(233,30,99,.2);' : ''),
     line: 'flex-grow:1;width:3px;min-height:14px;border-radius:3px;' + (k === rows.length - 1 ? 'background:transparent' : st === 'done' ? 'background:#6EE7B7' : 'background:repeating-linear-gradient(180deg,#CBD5E1 0 4px,transparent 4px 8px)'),
   }));
@@ -55,7 +56,7 @@ export function joiningVals(c: Ctx) {
       return {
         label: new Date(joinDay().getTime() + off * DAY).toLocaleDateString(locale, { weekday: 'short', day: 'numeric', month: 'short' }),
         pick: () => c.act({ travelDay: k }),
-        style: 'min-height:48px;padding:0 16px;border-radius:999px;cursor:pointer;font-weight:800;font-size:15px;' + (sel ? 'background:#0EA5E9;color:#FFFFFF;border:2px solid #0369A1;box-shadow:0 4px 0 #0369A1;' : 'background:#FFFFFF;color:#0F172A;border:2px solid #E2E8F0;box-shadow:0 4px 0 #E2E8F0;'),
+        style: 'min-height:48px;padding:0 16px;border-radius:999px;cursor:pointer;font-weight:800;font-size:' + FS.body + ';' + (sel ? 'background:#0EA5E9;color:#FFFFFF;border:2px solid #0369A1;box-shadow:0 4px 0 #0369A1;' : 'background:#FFFFFF;color:#0F172A;border:2px solid #E2E8F0;box-shadow:0 4px 0 #E2E8F0;'),
       };
     }),
   };

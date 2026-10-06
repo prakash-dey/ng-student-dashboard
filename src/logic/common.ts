@@ -12,14 +12,14 @@ export function leaves(count: number, colors: string[], W: number, zFront: numbe
 
 const LANGS: [Lang, string, string][] = [['en', 'EN', 'English'], ['hi', 'हिं', 'Hindi'], ['mr', 'मरा', 'Marathi']];
 
-/** EN / हिं / मरा switch in the top bar. `size` = [min-width, height, horizontal padding, font size]. */
-export function langChips(current: Lang, pick: (lang: Lang) => void, size: [number, number, number, number], activeShadow: string) {
-  const [minW, h, padX, font] = size;
+/** EN / हिं / मरा switch in the top bar. `size` = [min-width, height, horizontal padding], `font` = a font-size value. */
+export function langChips(current: Lang, pick: (lang: Lang) => void, size: [number, number, number], font: string, activeShadow: string) {
+  const [minW, h, padX] = size;
   return LANGS.map(([code, label, aria]) => {
     const on = code === current;
     return {
       label, aria, pick: () => pick(code),
-      style: 'border:none;border-radius:999px;min-width:' + minW + 'px;height:' + h + 'px;padding:0 ' + padX + 'px;cursor:pointer;font-weight:800;font-size:' + font + 'px;' +
+      style: 'border:none;border-radius:999px;min-width:' + minW + 'px;height:' + h + 'px;padding:0 ' + padX + 'px;cursor:pointer;font-weight:800;font-size:' + font + ';' +
         (on ? 'background:linear-gradient(135deg,#EC4899,#BE185D);color:#FFFFFF;' + activeShadow : 'background:transparent;color:#BE185D;'),
     };
   });

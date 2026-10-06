@@ -42,14 +42,14 @@ export function journeyLayoutDesktop(c: Ctx): Layout {
   L.disc = 'position:absolute;left:' + px(170) + ';bottom:0;width:' + px(380) + ';height:' + px(50) + ';border-radius:50%;background:radial-gradient(ellipse,rgba(236,72,153,.5),rgba(236,72,153,0) 70%)';
   const bubbleL = Math.round(470 * k);
   L.bubble = 'position:absolute;left:' + bubbleL + 'px;top:70px;width:' + clamp(stageW - bubbleL - 20, 260, 360) + 'px;border-radius:30px 30px 30px 8px;padding:20px 22px;display:flex;flex-direction:column;gap:10px;box-sizing:border-box';
-  L.askStyle = DISPLAY + 'font-size:32px;line-height:1.12;color:#0F172A';
+  L.askStyle = DISPLAY + 'font-size:28px;line-height:1.12;color:#0F172A';
   L.subStyle = 'font-size:18px;font-weight:600;color:#475569;line-height:1.35';
   L.tw1 = 'position:absolute;left:' + px(120) + ';top:' + px(330) + ';transform:scale(1.6)';
   L.tw2 = 'position:absolute;left:' + px(600) + ';top:' + px(520) + ';animation-delay:.6s';
   L.zzz = 'position:absolute;left:' + px(430) + ';top:' + px(300) + ';transform:scale(1.6)';
   L.tourAshaBox = 'width:150px;height:190px;flex-shrink:0;border-radius:26px;overflow:hidden;background:linear-gradient(160deg,#FCE7F3,#FEF3C7);border:3px solid #F9A8D4';
   L.tourAsha = 'width:300px;height:auto;margin-left:-78px;margin-top:0';
-  L.tourText = DISPLAY + 'font-size:26px;line-height:1.2;color:#0F172A';
+  L.tourText = DISPLAY + 'font-size:24px;line-height:1.2;color:#0F172A';
 
   L.panel = 'position:absolute;left:' + panelL + 'px;top:108px;width:' + panelW + 'px;height:' + (H - 136) + 'px;box-sizing:border-box;padding:26px 30px;border-radius:34px;display:flex;flex-direction:column;gap:14px;z-index:10';
   L.panelCls = 'glass';
@@ -57,14 +57,14 @@ export function journeyLayoutDesktop(c: Ctx): Layout {
   L.bird = 'position:absolute;left:0;top:190px;z-index:3';
 
   const mb = desktopMapBox(c.f);
-  L.mapTitle = 'position:absolute;left:' + (DX + 34) + 'px;top:100px;font-size:34px;z-index:10';
+  L.mapTitle = 'position:absolute;left:' + (DX + 34) + 'px;top:100px;font-size:32px;z-index:10';
   L.mapBox = 'position:absolute;left:' + (DX + 24) + 'px;top:156px;width:' + mb.w + 'px;height:' + mb.h + 'px;border-radius:30px;overflow:hidden;box-shadow:0 18px 44px rgba(120,53,15,.3),inset 0 0 0 3px rgba(180,120,60,.35);background:#EAD7AE;z-index:10';
   L.mapScroll = 'width:' + mb.w + 'px;height:' + mb.h + 'px;overflow:hidden';
 
   // celebrations: centred in the content box; the art cluster shrinks only on short screens
   const celK = clamp((H - HUD_H - CEL_REST) / CEL_ART.h, 0.55, 1);
   L.cel = 'position:absolute;left:' + DX + 'px;top:80px;width:' + DW + 'px;height:' + (H - HUD_H) + 'px;z-index:12;display:flex;flex-direction:column;align-items:center;padding:14px 0 30px;box-sizing:border-box' + (celK < 1 ? ';overflow-y:auto;scrollbar-width:none' : '');
-  L.celTitle = 'margin-top:8px;' + DISPLAY + 'font-size:48px;color:#0F172A;text-align:center;line-height:1.05';
+  L.celTitle = 'margin-top:8px;' + DISPLAY + 'font-size:44px;color:#0F172A;text-align:center;line-height:1.05';
   L.celStage = 'position:relative;width:640px;height:400px;margin-top:0' + shrinkBox(CEL_ART.w, CEL_ART.h, celK);
   L.celRays = 'position:absolute;left:70px;top:-60px;width:500px;height:500px';
   L.celAsha = 'position:absolute;left:140px;top:0;width:460px;height:auto';
@@ -78,7 +78,7 @@ export function journeyLayoutDesktop(c: Ctx): Layout {
   L.toastAsha = 'position:absolute;left:' + (DX + 120) + 'px;bottom:' + ASHA_FOOT + 'px;width:460px;height:auto';
   L.countAsha = 'position:absolute;left:' + (DX + 100) + 'px;bottom:' + ASHA_FOOT + 'px;width:480px;height:auto';
   L.sheet = 'width:520px;margin-bottom:170px;box-sizing:border-box;background:#FFFFFF;border-radius:32px;padding:0 28px 26px;display:flex;flex-direction:column;align-items:center;gap:12px';
-  L.qText = DISPLAY + 'font-size:26px;line-height:1.25;color:#0F172A';
+  L.qText = DISPLAY + 'font-size:24px;line-height:1.25;color:#0F172A';
   return L;
 }
 

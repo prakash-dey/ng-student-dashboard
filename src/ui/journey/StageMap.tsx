@@ -51,7 +51,7 @@ export function StageMap({ v }: { v: V }) {
             </div>
             {v.P ? (
               <>
-                <div class="hand-swipe" style="position: absolute; right: 12px; bottom: 12px; display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.92); border-radius: 999px; padding: 5px 10px; font-size: 12px; font-weight: 700; color: #7C2D12; box-shadow: 0 4px 12px rgba(0,0,0,.18); pointer-events: none">
+                <div class="hand-swipe" style="position: absolute; right: 12px; bottom: 12px; display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.92); border-radius: 999px; padding: 5px 10px; font-size: var(--fs-caption); font-weight: 700; color: #7C2D12; box-shadow: 0 4px 12px rgba(0,0,0,.18); pointer-events: none">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M15 6l-6 6 6 6" />
                   </svg>

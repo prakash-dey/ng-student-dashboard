@@ -43,7 +43,7 @@ export function RoundIntro({ v }: { v: V }) {
                       <path d={r.d} />
                     </svg>
                   </span>
-                  <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 19px; color: #0F172A; line-height: 1.2">{r.label}</span>
+                  <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: var(--fs-label); color: #0F172A; line-height: 1.2">{r.label}</span>
                 </div>
               </Fragment>
             ))}

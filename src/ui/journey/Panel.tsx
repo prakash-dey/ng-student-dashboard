@@ -57,7 +57,7 @@ export function Panel({ v }: { v: V }) {
                   </div>
                   {v.cfg.hasHelp ? (
                     <>
-                      <button onClick={v.openHelp} class="soft-btn" style="flex-shrink: 0; min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #BAE6FD; background: #F0F9FF; color: #075985; font-weight: 800; font-size: 13px; white-space: nowrap; cursor: pointer; flex-shrink: 0">
+                      <button onClick={v.openHelp} class="soft-btn" style="flex-shrink: 0; min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #BAE6FD; background: #F0F9FF; color: #075985; font-weight: 800; font-size: var(--fs-small); white-space: nowrap; cursor: pointer; flex-shrink: 0">
                         {v.t.needHelp}
                       </button>
                     </>

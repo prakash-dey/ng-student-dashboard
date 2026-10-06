@@ -45,13 +45,13 @@ export function ReadyCheck({ v }: { v: V }) {
                       </svg>
                     </span>
                     {" "}
-                    <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; color: #0F172A; line-height: 1.1">{r.label}</span>
+                    <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: var(--fs-title); color: #0F172A; line-height: 1.1">{r.label}</span>
                   </div>
                 </Fragment>
               ))}
             </div>
             <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
-              <span style="font-weight: 800; font-size: 14px; color: #475569">{v.t.testLang}</span>
+              <span style="font-weight: 800; font-size: var(--fs-body-s); color: #475569">{v.t.testLang}</span>
               {(v.testLangChips || []).map((c: any, i0: number) => (
                 <Fragment key={i0}>
                   <button onClick={c.pick} style={c.style}>{c.label}</button>

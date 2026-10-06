@@ -39,3 +39,41 @@ html, body { overflow-x: hidden; }
   content: ""; position: absolute; left: 50%; top: 50%;
   width: max(100%, 46px); height: max(100%, 46px); transform: translate(-50%, -50%);
 }
+
+/* Type scale: every font size in the app is one of these roles (no other values).
+   Phone: fluid with the screen width (exact design size at 390px, ~90% at 320px, a little larger up to tablets).
+   PC (>=900px): fixed. The PC About pages use their own px sizes because that page scales as a whole. */
+:root {
+  --fs-hero: clamp(24px, 5.71px + 5.714vw, 30px);                      /* 28px on a 390px phone: About page 1 headline */
+  --fs-display: clamp(23px, 9.29px + 4.286vw, 28px);                   /* 26px on a 390px phone: celebration titles, step-complete toast */
+  --fs-heading: clamp(20px, 10.86px + 2.857vw, 24px);                  /* 22px on a 390px phone: page headings, dialog titles, test question, card titles */
+  --fs-button: clamp(18px, 8.86px + 2.857vw, 21px);                    /* 20px on a 390px phone: main buttons */
+  --fs-title: clamp(16px, 6.86px + 2.857vw, 19px);                     /* 18px on a 390px phone: Asha's speech, list titles */
+  --fs-input: clamp(16.5px, 9.64px + 2.143vw, 19px);                   /* 18px on a 390px phone: typed answers, dropdown values */
+  --fs-label: clamp(15.5px, 8.64px + 2.143vw, 18px);                   /* 17px on a 390px phone: choice tiles, card labels */
+  --fs-button-sm: clamp(15px, 10.43px + 1.429vw, 17px);                /* 16px on a 390px phone: secondary buttons */
+  --fs-body-l: clamp(15px, 10.43px + 1.429vw, 16px);                   /* 16px on a 390px phone: large body text, chips */
+  --fs-body: clamp(14px, 9.43px + 1.429vw, 15px);                      /* 15px on a 390px phone: body text */
+  --fs-body-s: clamp(13px, 8.43px + 1.429vw, 14px);                    /* 14px on a 390px phone: secondary text */
+  --fs-small: clamp(12.5px, 10.21px + 0.714vw, 13px);                  /* 13px on a 390px phone: small text, fact chips */
+  --fs-caption: clamp(11.5px, 9.21px + 0.714vw, 12px);                 /* 12px on a 390px phone: captions, tags */
+  --fs-micro: clamp(10px, 5.43px + 1.429vw, 11px);                     /* 11px on a 390px phone: mono labels, pills */
+}
+@media (min-width: 900px) {
+  :root {
+    --fs-hero: 28px;
+    --fs-display: 26px;
+    --fs-heading: 22px;
+    --fs-button: 20px;
+    --fs-title: 18px;
+    --fs-input: 18px;
+    --fs-label: 17px;
+    --fs-button-sm: 16px;
+    --fs-body-l: 16px;
+    --fs-body: 15px;
+    --fs-body-s: 14px;
+    --fs-small: 13px;
+    --fs-caption: 12px;
+    --fs-micro: 11px;
+  }
+}

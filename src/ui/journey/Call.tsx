@@ -11,16 +11,16 @@ export function Call({ v }: { v: V }) {
         <>
           <div class="slide-in" style="display: flex; flex-direction: column; gap: 10px">
             <div style={v.callUi.box}>
-              <div style="position: absolute; left: 12px; top: 12px; display: flex; align-items: center; gap: 6px; background: rgba(0,0,0,.45); color: #FFFFFF; border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 800">
+              <div style="position: absolute; left: 12px; top: 12px; display: flex; align-items: center; gap: 6px; background: rgba(0,0,0,.45); color: #FFFFFF; border-radius: 999px; padding: 4px 10px; font-size: var(--fs-small); font-weight: 800">
                 <span class="node-now" style="width: 9px; height: 9px; border-radius: 999px; background: #EF4444" />
                 {v.t.live}{" · "}{v.callUi.clock}
               </div>
-              <div style="position: absolute; right: 12px; top: 12px; display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.18); color: #FFFFFF; border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 800">
+              <div style="position: absolute; right: 12px; top: 12px; display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.18); color: #FFFFFF; border-radius: 999px; padding: 4px 10px; font-size: var(--fs-caption); font-weight: 800">
                 Google Meet
               </div>
               <div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
                 <div class="bob" style={v.callUi.avatar}>{v.callUi.initials}</div>
-                <span style="color: #FFFFFF; font-weight: 800; font-size: 17px">{v.callUi.who}</span>
+                <span style="color: #FFFFFF; font-weight: 800; font-size: var(--fs-body-l)">{v.callUi.who}</span>
                 <div style="display: flex; gap: 4px; align-items: flex-end; height: 22px">
                   {(v.callUi.wave || []).map((w: any, i0: number) => (
                     <Fragment key={i0}>
@@ -42,12 +42,12 @@ export function Call({ v }: { v: V }) {
                 ) : null}
                 {v.callUi.camOff ? (
                   <>
-                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #334155; color: #CBD5E1; font-weight: 800; font-size: 13px">
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #334155; color: #CBD5E1; font-weight: 800; font-size: var(--fs-small)">
                       {v.t.camOffTxt}
                     </div>
                   </>
                 ) : null}
-                <span style="position: absolute; left: 6px; bottom: 4px; font-size: 11px; font-weight: 800; color: #FFFFFF; background: rgba(0,0,0,.45); padding: 1px 6px; border-radius: 999px">
+                <span style="position: absolute; left: 6px; bottom: 4px; font-size: var(--fs-micro); font-weight: 800; color: #FFFFFF; background: rgba(0,0,0,.45); padding: 1px 6px; border-radius: 999px">
                   {v.t.you}
                 </span>
               </div>
@@ -69,7 +69,7 @@ export function Call({ v }: { v: V }) {
                 <Fragment key={i0}>
                   <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px; border-radius: 16px; background: #FFFFFF; border: 1.5px solid #FDE68A">
                     <span style="font-size: 24px; line-height: 1" aria-hidden="true">{c.emo}</span>
-                    <span style="font-size: 13px; font-weight: 800; color: #78350F; text-align: center">{c.label}</span>
+                    <span style="font-size: var(--fs-small); font-weight: 800; color: #78350F; text-align: center">{c.label}</span>
                   </div>
                 </Fragment>
               ))}

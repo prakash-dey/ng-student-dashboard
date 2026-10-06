@@ -39,7 +39,7 @@ export function StudentJourney({ v }: { v: V }) {
                   <path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z" fill="#FBBF24" />
                 </svg>
                 {" "}
-                <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; color: #FFFFFF; flex-grow: 1">{v.sectionText}</span>
+                <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: var(--fs-title); color: #FFFFFF; flex-grow: 1">{v.sectionText}</span>
               </div>
             </>
           ) : null}
@@ -51,7 +51,7 @@ export function StudentJourney({ v }: { v: V }) {
                   <path d="M5 12.5l4.5 4.5L19 7.5" />
                 </svg>
                 {" "}
-                <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 15px; color: #FFFFFF">{v.miniText}</span>
+                <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: var(--fs-body); color: #FFFFFF">{v.miniText}</span>
               </div>
             </>
           ) : null}

@@ -23,12 +23,12 @@ export function History({ v }: { v: V }) {
                   </div>
                   <div style="flex-grow: 1; min-width: 0; padding-bottom: 12px; display: flex; flex-direction: column; gap: 3px">
                     <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
-                      <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 18px; color: #0F172A; line-height: 1.1">
+                      <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: var(--fs-title); color: #0F172A; line-height: 1.1">
                         {h.title}
                       </span>
                       <span style={h.chip}>{h.status}</span>
                     </div>
-                    <span style="font-size: 14px; font-weight: 700; color: #64748B">{h.sub}</span>
+                    <span style="font-size: var(--fs-body-s); font-weight: 700; color: #64748B">{h.sub}</span>
                   </div>
                 </div>
               </Fragment>

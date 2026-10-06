@@ -69,7 +69,7 @@ export function Page3Courses({ v }: { v: V }) {
           </div>
           <div class="ld-pop" style={v.LD.L.cta3Wrap}>
             <button onClick={v.LD.goP2} style={v.LD.L.backBtn}>{v.LD.t.back}</button>
-            <div class="nudge" style="position: absolute; right: 18px; bottom: 86px; display: flex; align-items: center; gap: 6px; background: #0F172A; color: #FFFFFF; font-weight: 800; font-size: 14px; padding: 7px 12px; border-radius: 999px; box-shadow: 0 6px 16px rgba(0,0,0,.25); z-index: 5; pointer-events: none">
+            <div class="nudge" style="position: absolute; right: 18px; bottom: 86px; display: flex; align-items: center; gap: 6px; background: #0F172A; color: #FFFFFF; font-weight: 800; font-size: var(--fs-body-s); padding: 7px 12px; border-radius: 999px; box-shadow: 0 6px 16px rgba(0,0,0,.25); z-index: 5; pointer-events: none">
               {v.t.tapHere}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M12 5v14M6 13l6 6 6-6" />
@@ -93,7 +93,7 @@ export function Page3Courses({ v }: { v: V }) {
                       </svg>
                     </span>
                     <span style="display: flex; flex-direction: column; flex-grow: 1; min-width: 0">
-                      <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 22px; line-height: 1.1; color: #0F172A">
+                      <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: var(--fs-heading); line-height: 1.1; color: #0F172A">
                         {v.LD.sheet.full}
                       </span>
                       <span style={v.LD.sheet.subStyle}>{v.LD.sheet.sub}</span>
@@ -143,12 +143,12 @@ export function Page3Courses({ v }: { v: V }) {
                             </svg>
                           </span>
                           {" "}
-                          <span style="font-weight: 700; font-size: 16px; color: #0F172A; line-height: 1.3">{rw.text}</span>
+                          <span style="font-weight: 700; font-size: var(--fs-body); color: #0F172A; line-height: 1.3">{rw.text}</span>
                         </div>
                       </Fragment>
                     ))}
                   </div>
-                  <button class="ld-glow-btn" onClick={v.LD.closeSheet} style="height: 58px; border: none; border-radius: 999px; color: #FFFFFF; font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 21px; cursor: pointer; animation: none">
+                  <button class="ld-glow-btn" onClick={v.LD.closeSheet} style="height: 58px; border: none; border-radius: 999px; color: #FFFFFF; font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: var(--fs-button); cursor: pointer; animation: none">
                     {v.LD.t.gotIt}
                   </button>
                 </div>

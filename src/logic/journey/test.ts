@@ -2,6 +2,7 @@
 import { I18N, type Lang } from '../../i18n';
 import { DAY, pad2 } from '../dates';
 import type { Ctx } from './context';
+import { FS } from '../styles';
 
 const TEST_SECONDS = 3600;
 const RETRY_DAYS = 15;
@@ -53,7 +54,7 @@ export function testVals(c: Ctx) {
       qDots: bank.map((_, k) => {
         const answered = s.answers[k] !== undefined, cur = k === s.qi;
         return { n: k + 1, aria: t.qWord + (k + 1), go: () => c.set({ qi: k }),
-          style: "width:40px;height:40px;border-radius:999px;cursor:pointer;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:17px;" + (cur ? 'background:#E91E63;color:#FFFFFF;border:2px solid #BE185D;transform:scale(1.12);' : answered ? 'background:#10B981;color:#FFFFFF;border:2px solid #059669;' : 'background:#FFFFFF;color:#94A3B8;border:2px solid #E2E8F0;') };
+          style: "width:40px;height:40px;border-radius:999px;cursor:pointer;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:" + FS.label + ";" + (cur ? 'background:#E91E63;color:#FFFFFF;border:2px solid #BE185D;transform:scale(1.12);' : answered ? 'background:#10B981;color:#FFFFFF;border:2px solid #059669;' : 'background:#FFFFFF;color:#94A3B8;border:2px solid #E2E8F0;') };
       }),
       qHead: t.qWord + (s.qi + 1) + t.of + '5',
       failUi: { score: s.score + '/5', deg: s.score * 72, clock: clock.map(([v, u]) => ({ v: pad2(v), u })) },
@@ -66,7 +67,7 @@ export function testVals(c: Ctx) {
       readyGrid: 'display:grid;gap:10px;grid-template-columns:repeat(' + (D ? 2 : 1) + ',minmax(0,1fr))',
       testLangChips: TEST_LANGS.map(([code, label]) => {
         const on = code === testLang;
-        return { label, pick: () => c.set({ testLang: code }), style: 'min-height:40px;padding:0 14px;border-radius:999px;cursor:pointer;font-weight:800;font-size:15px;' + (on ? 'background:#E91E63;color:#FFFFFF;border:2px solid #BE185D;' : 'background:#FFFFFF;color:#BE185D;border:2px solid #FBCFE8;') };
+        return { label, pick: () => c.set({ testLang: code }), style: 'min-height:40px;padding:0 14px;border-radius:999px;cursor:pointer;font-weight:800;font-size:' + FS.body + ';' + (on ? 'background:#E91E63;color:#FFFFFF;border:2px solid #BE185D;' : 'background:#FFFFFF;color:#BE185D;border:2px solid #FBCFE8;') };
       }),
       // "submitting" equaliser bars
       bars: [0, 1, 2, 3, 4].map((k) => ({ style: 'width:16px;height:90px;border-radius:8px;transform-origin:bottom;animation-delay:' + k * 0.15 + 's;background:' + ['#EC4899', '#F59E0B', '#10B981', '#0EA5E9', '#8B5CF6'][k] })),

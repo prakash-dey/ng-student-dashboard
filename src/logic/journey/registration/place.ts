@@ -1,6 +1,7 @@
 // Registration: address as two searchable dropdowns, State then District (the district list depends on the state).
 import { GEO } from '../../data/geo';
 import type { Ctx } from '../context';
+import { FS } from '../../styles';
 
 const norm = (x: string) => String(x).toLowerCase().replace(/\s+/g, ' ').trim();
 const optStyle = (sel: boolean) => 'display:flex;align-items:center;gap:10px;width:100%;min-height:50px;padding:6px 14px;border:none;border-bottom:1px solid #FCE7F3;cursor:pointer;text-align:left;background:' + (sel ? '#F0FDF4' : '#FFFFFF');
@@ -32,7 +33,7 @@ export function placeVals(c: Ctx) {
           try { el.focus({ preventScroll: true }); } catch { /* old browsers */ }
         }
       },
-      valStyle: "flex-grow:1;min-width:0;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Baloo 2','Noto Sans Devanagari',sans-serif;font-weight:800;font-size:20px;color:" + (b.value ? '#0F172A' : '#94A3B8'),
+      valStyle: "flex-grow:1;min-width:0;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Baloo 2','Noto Sans Devanagari',sans-serif;font-weight:800;font-size:" + FS.input + ";color:" + (b.value ? '#0F172A' : '#94A3B8'),
       chev: 'flex-shrink:0;transition:transform .2s;transform:rotate(' + (open ? 180 : 0) + 'deg);' + (b.disabled ? 'opacity:.35;' : ''),
       btnStyle: 'display:flex;align-items:center;gap:10px;height:62px;width:100%;box-sizing:border-box;padding:0 16px 0 18px;border-radius:18px;cursor:' + (b.disabled ? 'not-allowed' : 'pointer') + ';' + (b.disabled ? 'background:#F8FAFC;border:2px dashed #CBD5E1;' : open ? 'background:#FFFFFF;border:2px solid #E91E63;box-shadow:0 0 0 5px rgba(233,30,99,.16);' : b.value ? 'background:#F0FDF4;border:2px solid #6EE7B7;' : 'background:#FFFFFF;border:2px solid #FBCFE8;box-shadow:0 4px 0 #FBCFE8;'),
       listStyle: 'max-height:' + (D ? 280 : 228) + 'px;display:flex;flex-direction:column',

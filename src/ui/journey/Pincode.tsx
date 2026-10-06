@@ -13,7 +13,7 @@ export function Pincode({ v }: { v: V }) {
             {(v.placeBoxes || []).map((pb: any, i0: number) => (
               <Fragment key={i0}>
                 <div style="display: flex; flex-direction: column; gap: 6px">
-                  <span id={pb.labelId} style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; color: #475569">
+                  <span id={pb.labelId} style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: var(--fs-body); color: #475569">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#DB2777" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <path d={pb.d} />
                     </svg>
@@ -42,19 +42,19 @@ export function Pincode({ v }: { v: V }) {
                             <circle cx="11" cy="11" r="7" />
                             <path d="M21 21l-4.5-4.5" />
                           </svg>
-                          <input ref={pb.searchRef} type="text" value={pb.query} onInput={pb.onQuery} placeholder={pb.searchPh} aria-label={pb.searchPh} autocomplete="off" style="flex-grow: 1; min-width: 0; height: 44px; border: none; background: transparent; font-size: 18px; font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 700; color: #0F172A; outline: none" />
+                          <input ref={pb.searchRef} type="text" value={pb.query} onInput={pb.onQuery} placeholder={pb.searchPh} aria-label={pb.searchPh} autocomplete="off" style="flex-grow: 1; min-width: 0; height: 44px; border: none; background: transparent; font-size: var(--fs-input); font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 700; color: #0F172A; outline: none" />
                         </div>
                         <div class="scroll-y" role="listbox" aria-labelledby={pb.labelId} style={pb.listStyle}>
                           {(pb.opts || []).map((op: any, i1: number) => (
                             <Fragment key={i1}>
                               <button role="option" aria-selected={op.sel} onClick={op.pick} style={op.style}>
                                 <span style="display: flex; flex-direction: column; flex-grow: 1; min-width: 0; text-align: left">
-                                  <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 18px; color: #0F172A; line-height: 1.15">
+                                  <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: var(--fs-title); color: #0F172A; line-height: 1.15">
                                     {op.label}
                                   </span>
                                   {op.hasSub ? (
                                     <>
-                                      <span style="font-size: 13px; font-weight: 700; color: #64748B">{op.sub}</span>
+                                      <span style="font-size: var(--fs-small); font-weight: 700; color: #64748B">{op.sub}</span>
                                     </>
                                   ) : null}
                                 </span>
@@ -70,7 +70,7 @@ export function Pincode({ v }: { v: V }) {
                           ))}
                           {pb.empty ? (
                             <>
-                              <div style="padding: 14px; font-weight: 700; font-size: 15px; color: #64748B; text-align: center">{v.t.noMatch}</div>
+                              <div style="padding: 14px; font-weight: 700; font-size: var(--fs-body); color: #64748B; text-align: center">{v.t.noMatch}</div>
                             </>
                           ) : null}
                         </div>

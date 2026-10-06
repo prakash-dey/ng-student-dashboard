@@ -11,7 +11,7 @@ export function Countdown({ v }: { v: V }) {
         <>
           <div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 40; background: radial-gradient(circle at 50% 45%, #FDF2F8 0%, #FCE7F3 40%, #FBCFE8 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px">
             <div class="rays" style="position: absolute; left: 50%; top: 45%; width: 520px; height: 520px; margin-left: -260px; margin-top: -260px" />
-            <span style="position: relative; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: .2em; color: #BE185D">
+            <span style="position: relative; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: var(--fs-caption); letter-spacing: .2em; color: #BE185D">
               {v.t.getReady}
             </span>
             {v.cnt.c3 ? (

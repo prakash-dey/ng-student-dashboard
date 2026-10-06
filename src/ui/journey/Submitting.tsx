@@ -17,7 +17,7 @@ export function Submitting({ v }: { v: V }) {
                 </Fragment>
               ))}
             </div>
-            <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 22px; color: #0F172A; text-align: center">{v.t.checking}</span>
+            <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: var(--fs-heading); color: #0F172A; text-align: center">{v.t.checking}</span>
           </div>
         </>
       ) : null}

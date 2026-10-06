@@ -4,6 +4,7 @@ import { CAMPUSES, CAMPUS_EN, CAMPUS_NAMES, SCHOOLS, type Campus } from '../../d
 import type { Advance } from '../advance';
 import type { Ctx } from '../context';
 import { SELECTED } from './choices';
+import { FS } from '../../styles';
 
 const QUAL_RANK: Record<string, number> = { '12': 1, college: 1, diploma: 1, grad: 2 };
 const ROW_COLS = ['#0EA5E9', '#10B981', '#F59E0B'];
@@ -36,10 +37,10 @@ export function schoolVals(c: Ctx, advance: Advance) {
     const sel = s.school === x.id, open = s.openSchool === x.id;
     const dur = x.id === 'bca' ? t.bcaDur : x.dur + t.months;
     return {
-      interest: t.interest[idx], name: t.schoolFull[idx], desc: t.schoolDesc[idx], showDesc: sel || open, descStyle: 'font-size:13.5px;font-weight:600;line-height:1.3;color:#475569', d: x.d, open, locked: !ok,
+      interest: t.interest[idx], name: t.schoolFull[idx], desc: t.schoolDesc[idx], showDesc: sel || open, descStyle: 'font-size:' + FS.small + ';font-weight:600;line-height:1.3;color:#475569', d: x.d, open, locked: !ok,
       elig: ok ? t.canJoin : !eduOk ? (x.need === 'grad' ? t.needsGrad : t.needs12) : fitWhy, lockedEdu: !eduOk, lockedFit: eduOk && !!fitWhy,
-      nameStyle: 'font-size:14px;font-weight:800;line-height:1.25;color:' + x.c,
-      eligStyle: 'font-size:12px;font-weight:800;padding:2px 8px;border-radius:999px;' + (ok ? 'background:#DCFCE7;color:#166534' : 'background:#FEE2E2;color:#991B1B'),
+      nameStyle: 'font-size:' + FS.bodyS + ';font-weight:800;line-height:1.25;color:' + x.c,
+      eligStyle: 'font-size:' + FS.caption + ';font-weight:800;padding:2px 8px;border-radius:999px;' + (ok ? 'background:#DCFCE7;color:#166534' : 'background:#FEE2E2;color:#991B1B'),
       tile: 'width:56px;height:56px;flex-shrink:0;border-radius:18px;display:flex;align-items:center;justify-content:center;background:' + (ok ? x.c : '#94A3B8') + ';box-shadow:0 4px 0 rgba(0,0,0,.12)',
       chev: 'width:32px;height:32px;flex-shrink:0;border-radius:999px;display:flex;align-items:center;justify-content:center;color:' + x.c + ';background:#F8FAFC;transition:transform .2s;transform:rotate(' + (open ? 180 : 0) + 'deg)',
       style: 'border-radius:22px;overflow:hidden;transition:box-shadow .15s;background:' + (sel ? '#FDF2F8' : ok ? '#FFFFFF' : '#F8FAFC') + ';' + (sel ? 'border:3px solid #F472B6;box-shadow:0 5px 0 #F9A8D4;' : 'border:2px solid ' + (ok ? '#FBCFE8' : '#E2E8F0') + ';box-shadow:0 4px 0 ' + (ok ? '#FBCFE8' : '#E2E8F0') + ';') + (ok ? '' : 'opacity:.7;'),

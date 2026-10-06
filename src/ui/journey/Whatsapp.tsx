@@ -15,7 +15,7 @@ export function Whatsapp({ v }: { v: V }) {
                 <path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z" />
               </svg>
             </div>
-            <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; color: #14532D; text-align: center">{v.batchName}</span>
+            <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: var(--fs-title); color: #14532D; text-align: center">{v.batchName}</span>
             {v.D ? (
               <>
                 <div style="display: flex; align-items: center; gap: 14px; padding: 12px; border-radius: 20px; background: #FFFFFF; border: 1.5px solid #E2E8F0">
@@ -23,7 +23,7 @@ export function Whatsapp({ v }: { v: V }) {
                     <rect width="25" height="25" fill="#FFFFFF" />
                     <path d={v.qrPath} fill="#0F172A" />
                   </svg>
-                  <span style="font-weight: 800; font-size: 15px; color: #334155; max-width: 160px">{v.t.scanQr}</span>
+                  <span style="font-weight: 800; font-size: var(--fs-body); color: #334155; max-width: 160px">{v.t.scanQr}</span>
                 </div>
               </>
             ) : null}

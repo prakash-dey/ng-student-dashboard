@@ -3,6 +3,7 @@
 import { bookableDays, DAY, fmtTime, longDate, pad2 } from '../dates';
 import type { Booking } from '../state';
 import type { Ctx } from './context';
+import { FS } from '../styles';
 
 /** Bookable times each day; day 4 (index 3) has none, and some slots show as full. */
 const TIMES: [number, number][] = [[10, 0], [11, 30], [14, 0], [16, 30], [18, 0]];
@@ -48,7 +49,7 @@ export function roundsVals(c: Ctx) {
     return {
       label: time(tm.h, tm.m), full: tm.full,
       pick: () => { if (!tm.full) c.act({ time: key }); },
-      style: "min-height:52px;border-radius:16px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:17px;cursor:" + (tm.full ? 'not-allowed' : 'pointer') + ';' + (tm.full ? 'background:#F1F5F9;color:#94A3B8;border:2px dashed #CBD5E1;text-decoration:line-through;' : sel ? 'background:' + accent + ';color:#FFFFFF;border:2px solid ' + accentDark + ';box-shadow:0 4px 0 ' + accentDark + ';' : 'background:#FFFFFF;color:#0F172A;border:2px solid #E2E8F0;box-shadow:0 4px 0 #E2E8F0;'),
+      style: "min-height:52px;border-radius:16px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:" + FS.label + ";cursor:" + (tm.full ? 'not-allowed' : 'pointer') + ';' + (tm.full ? 'background:#F1F5F9;color:#94A3B8;border:2px dashed #CBD5E1;text-decoration:line-through;' : sel ? 'background:' + accent + ';color:#FFFFFF;border:2px solid ' + accentDark + ';box-shadow:0 4px 0 ' + accentDark + ';' : 'background:#FFFFFF;color:#0F172A;border:2px solid #E2E8F0;box-shadow:0 4px 0 #E2E8F0;'),
     };
   });
 

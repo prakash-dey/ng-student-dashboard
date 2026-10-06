@@ -10,7 +10,7 @@ export function SlotPicker({ v }: { v: V }) {
       {v.is.slot ? (
         <>
           <div class="slide-in" style="display: flex; flex-direction: column; gap: 12px">
-            <span style="display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 15px; color: #475569">
+            <span style="display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: var(--fs-body); color: #475569">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#DB2777" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="3" y="5" width="18" height="16" rx="2" />
                 <path d="M3 10h18M8 3v4M16 3v4" />
@@ -21,16 +21,16 @@ export function SlotPicker({ v }: { v: V }) {
               {(v.days || []).map((d: any, i0: number) => (
                 <Fragment key={i0}>
                   <button onClick={d.pick} style={d.style}>
-                    <span style="font-size: 12px; font-weight: 800">{d.wd}</span>
+                    <span style="font-size: var(--fs-caption); font-weight: 800">{d.wd}</span>
                     {" "}
-                    <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 22px; line-height: 1">{d.n}</span>
+                    <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: var(--fs-heading); line-height: 1">{d.n}</span>
                     {" "}
                     <span style={d.dotStyle} />
                   </button>
                 </Fragment>
               ))}
             </div>
-            <span style="display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 15px; color: #475569">
+            <span style="display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: var(--fs-body); color: #475569">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#DB2777" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="9" />
                 <path d="M12 7v5l3 2" />

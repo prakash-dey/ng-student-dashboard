@@ -1,5 +1,6 @@
 // Registration: profile photo.
 import type { Ctx } from '../context';
+import { FS } from '../../styles';
 
 const TIP_ICONS = [
   'M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6',
@@ -16,7 +17,7 @@ export function photoVals(c: Ctx) {
       bg: ph === 'done' ? '#D1FAE5' : '#FDF2F8', fg: ph === 'done' ? '#34D399' : ph === 'scan' ? '#67E8F9' : '#F9A8D4',
       scanning: ph === 'scan', done: ph === 'done',
       status: ph === 'done' ? t.photoAdded : t.noPhoto,
-      statusStyle: "font-family:'Baloo 2','Noto Sans Devanagari',sans-serif;font-weight:800;font-size:20px;color:" + (ph === 'done' ? '#047857' : ph === 'scan' ? '#0E7490' : '#94A3B8'),
+      statusStyle: "font-family:'Baloo 2','Noto Sans Devanagari',sans-serif;font-weight:800;font-size:" + FS.label + ";color:" + (ph === 'done' ? '#047857' : ph === 'scan' ? '#0E7490' : '#94A3B8'),
     },
     photoTips: [t.onlyYou, t.faceClear, t.goodLight].map((label, k) => ({ label, d: TIP_ICONS[k] })),
     takePhoto: () => c.set({ photo: 'done' }),

@@ -12,7 +12,7 @@ export function Campus({ v }: { v: V }) {
           <div class="slide-in" style="display: flex; flex-direction: column; gap: 10px">
             {v.noCampus ? (
               <>
-                <div style="padding: 12px 14px; border-radius: 18px; background: #FFF7ED; border: 2px solid #FDBA74; font-weight: 700; font-size: 15px; line-height: 1.3; color: #7C2D12">
+                <div style="padding: 12px 14px; border-radius: 18px; background: #FFF7ED; border: 2px solid #FDBA74; font-weight: 700; font-size: var(--fs-body); line-height: 1.3; color: #7C2D12">
                   {v.t.noCampus}
                 </div>
               </>
@@ -26,13 +26,13 @@ export function Campus({ v }: { v: V }) {
                     </svg>
                   </span>
                   <span style="display: flex; flex-direction: column; flex-grow: 1; min-width: 0; gap: 2px; text-align: left">
-                    <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 20px; color: #0F172A; line-height: 1.1">
+                    <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: var(--fs-label); color: #0F172A; line-height: 1.1">
                       {c.city}
                     </span>
-                    <span style="font-weight: 700; font-size: 13.5px; color: #64748B">{c.state}</span>
+                    <span style="font-weight: 700; font-size: var(--fs-small); color: #64748B">{c.state}</span>
                     {c.locked ? (
                       <>
-                        <span style="align-self: flex-start; font-size: 12px; font-weight: 800; line-height: 1.3; padding: 2px 9px; border-radius: 999px; background: #FEE2E2; color: #991B1B">
+                        <span style="align-self: flex-start; font-size: var(--fs-caption); font-weight: 800; line-height: 1.3; padding: 2px 9px; border-radius: 999px; background: #FEE2E2; color: #991B1B">
                           {c.reason}
                         </span>
                       </>
@@ -40,7 +40,7 @@ export function Campus({ v }: { v: V }) {
                   </span>
                   {c.near ? (
                     <>
-                      <span style="font-size: 12px; font-weight: 800; padding: 3px 10px; border-radius: 999px; background: #DCFCE7; color: #166534; white-space: nowrap">
+                      <span style="font-size: var(--fs-caption); font-weight: 800; padding: 3px 10px; border-radius: 999px; background: #DCFCE7; color: #166534; white-space: nowrap">
                         {v.t.nearTag}
                       </span>
                     </>

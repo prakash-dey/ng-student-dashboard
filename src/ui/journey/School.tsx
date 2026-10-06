@@ -13,11 +13,11 @@ export function School({ v }: { v: V }) {
             {v.noneEligible ? (
               <>
                 <div class="pop" style="display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 20px; background: #FFF7ED; border: 2px solid #FDBA74">
-                  <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 19px; color: #9A3412; line-height: 1.2">
+                  <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: var(--fs-label); color: #9A3412; line-height: 1.2">
                     {v.t.noneTitle}
                   </span>
-                  <span style="font-weight: 700; font-size: 15px; color: #7C2D12">{v.t.noneBody}</span>
-                  <button class="lift" onClick={v.goQual} style="align-self: flex-start; min-height: 46px; padding: 0 16px; border-radius: 999px; border: 2px solid #EA580C; background: #FFFFFF; color: #C2410C; font-weight: 800; font-size: 15px; cursor: pointer">
+                  <span style="font-weight: 700; font-size: var(--fs-body); color: #7C2D12">{v.t.noneBody}</span>
+                  <button class="lift" onClick={v.goQual} style="align-self: flex-start; min-height: 46px; padding: 0 16px; border-radius: 999px; border: 2px solid #EA580C; background: #FFFFFF; color: #C2410C; font-weight: 800; font-size: var(--fs-body); cursor: pointer">
                     {v.t.changeClass}
                   </button>
                 </div>
@@ -25,7 +25,7 @@ export function School({ v }: { v: V }) {
             ) : null}
             {v.hasSchoolsOk ? (
               <>
-                <div style="display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 15px; color: #166534">
+                <div style="display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: var(--fs-body); color: #166534">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12.5l4.5 4.5L19 7.5" />
                   </svg>
@@ -43,7 +43,7 @@ export function School({ v }: { v: V }) {
                       </svg>
                     </span>
                     <span style="display: flex; flex-direction: column; flex-grow: 1; min-width: 0; gap: 2px">
-                      <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 19px; color: #0F172A; line-height: 1.15">
+                      <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: var(--fs-label); color: #0F172A; line-height: 1.15">
                         {sk.interest}
                       </span>
                       <span style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center">
@@ -69,15 +69,15 @@ export function School({ v }: { v: V }) {
                                 </svg>
                               </span>
                               <span style="display: flex; flex-direction: column">
-                                <span style="font-size: 12px; font-weight: 700; color: #64748B">{r.label}</span>
-                                <span style="font-weight: 800; font-size: 16px; color: #0F172A">{r.value}</span>
+                                <span style="font-size: var(--fs-caption); font-weight: 700; color: #64748B">{r.label}</span>
+                                <span style="font-weight: 800; font-size: var(--fs-body); color: #0F172A">{r.value}</span>
                               </span>
                             </div>
                           </Fragment>
                         ))}
                         {sk.lockedFit ? (
                           <>
-                            <div style="padding: 10px 12px; border-radius: 14px; background: #FEF2F2; border: 1.5px solid #FECACA; font-weight: 700; font-size: 14px; line-height: 1.3; color: #991B1B">
+                            <div style="padding: 10px 12px; border-radius: 14px; background: #FEF2F2; border: 1.5px solid #FECACA; font-weight: 700; font-size: var(--fs-body-s); line-height: 1.3; color: #991B1B">
                               {v.t.lockedFit}
                             </div>
                           </>
@@ -89,8 +89,8 @@ export function School({ v }: { v: V }) {
                                 <rect x="5" y="11" width="14" height="9" rx="2" />
                                 <path d="M8 11V8a4 4 0 018 0v3" />
                               </svg>
-                              <span style="flex-grow: 1; font-weight: 700; font-size: 14px; color: #991B1B">{v.t.lockedWhy}</span>
-                              <button onClick={v.goQual} style="min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #B91C1C; background: #FFFFFF; color: #B91C1C; font-weight: 800; font-size: 13px; cursor: pointer">
+                              <span style="flex-grow: 1; font-weight: 700; font-size: var(--fs-body-s); color: #991B1B">{v.t.lockedWhy}</span>
+                              <button onClick={v.goQual} style="min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #B91C1C; background: #FFFFFF; color: #B91C1C; font-weight: 800; font-size: var(--fs-small); cursor: pointer">
                                 {v.t.changeClass}
                               </button>
                             </div>
@@ -104,7 +104,7 @@ export function School({ v }: { v: V }) {
             ))}
             {v.hasSchoolsNo ? (
               <>
-                <div style="display: flex; align-items: center; gap: 6px; margin-top: 10px; padding-top: 12px; border-top: 2px dashed #E2E8F0; font-weight: 800; font-size: 15px; color: #64748B">
+                <div style="display: flex; align-items: center; gap: 6px; margin-top: 10px; padding-top: 12px; border-top: 2px dashed #E2E8F0; font-weight: 800; font-size: var(--fs-body); color: #64748B">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <rect x="5" y="11" width="14" height="9" rx="2" />
                     <path d="M8 11V8a4 4 0 018 0v3" />
@@ -123,7 +123,7 @@ export function School({ v }: { v: V }) {
                       </svg>
                     </span>
                     <span style="display: flex; flex-direction: column; flex-grow: 1; min-width: 0; gap: 2px">
-                      <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 19px; color: #0F172A; line-height: 1.15">
+                      <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: var(--fs-label); color: #0F172A; line-height: 1.15">
                         {sk.interest}
                       </span>
                       <span style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center">
@@ -149,15 +149,15 @@ export function School({ v }: { v: V }) {
                                 </svg>
                               </span>
                               <span style="display: flex; flex-direction: column">
-                                <span style="font-size: 12px; font-weight: 700; color: #64748B">{r.label}</span>
-                                <span style="font-weight: 800; font-size: 16px; color: #0F172A">{r.value}</span>
+                                <span style="font-size: var(--fs-caption); font-weight: 700; color: #64748B">{r.label}</span>
+                                <span style="font-weight: 800; font-size: var(--fs-body); color: #0F172A">{r.value}</span>
                               </span>
                             </div>
                           </Fragment>
                         ))}
                         {sk.lockedFit ? (
                           <>
-                            <div style="padding: 10px 12px; border-radius: 14px; background: #FEF2F2; border: 1.5px solid #FECACA; font-weight: 700; font-size: 14px; line-height: 1.3; color: #991B1B">
+                            <div style="padding: 10px 12px; border-radius: 14px; background: #FEF2F2; border: 1.5px solid #FECACA; font-weight: 700; font-size: var(--fs-body-s); line-height: 1.3; color: #991B1B">
                               {v.t.lockedFit}
                             </div>
                           </>
@@ -169,8 +169,8 @@ export function School({ v }: { v: V }) {
                                 <rect x="5" y="11" width="14" height="9" rx="2" />
                                 <path d="M8 11V8a4 4 0 018 0v3" />
                               </svg>
-                              <span style="flex-grow: 1; font-weight: 700; font-size: 14px; color: #991B1B">{v.t.lockedWhy}</span>
-                              <button onClick={v.goQual} style="min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #B91C1C; background: #FFFFFF; color: #B91C1C; font-weight: 800; font-size: 13px; cursor: pointer">
+                              <span style="flex-grow: 1; font-weight: 700; font-size: var(--fs-body-s); color: #991B1B">{v.t.lockedWhy}</span>
+                              <button onClick={v.goQual} style="min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #B91C1C; background: #FFFFFF; color: #B91C1C; font-weight: 800; font-size: var(--fs-small); cursor: pointer">
                                 {v.t.changeClass}
                               </button>
                             </div>

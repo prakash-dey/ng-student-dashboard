@@ -7,6 +7,7 @@ import { MAP_SIZE } from '../geometry';
 import type { Layout } from '../styles';
 import type { Ctx } from './context';
 import { phoneMapBox } from './mapBox';
+import { FS } from '../styles';
 
 /** Asha stands fully on screen in the toast and countdown (the design cropped her at the knees; changed on request). */
 const ASHA_FOOT = 8;
@@ -39,14 +40,14 @@ export function journeyLayoutPhone(c: Ctx, compact: boolean): Layout {
   L.disc = big ? 'position:absolute;left:44px;top:192px;width:150px;height:26px;border-radius:50%;background:radial-gradient(ellipse,rgba(236,72,153,.45),rgba(236,72,153,0) 70%)' : 'position:absolute;left:' + px(26) + ';top:' + px(110) + ';width:' + px(92) + ';height:' + px(16) + ';border-radius:50%;background:radial-gradient(ellipse,rgba(236,72,153,.45),rgba(236,72,153,0) 70%)';
   // the big bubble keeps 166px but never reaches left of Asha's face on narrow phones
   L.bubble = (big ? 'position:absolute;right:14px;top:12px;width:' + clamp(CW - 224, 140, 166) + 'px;' : 'position:absolute;left:' + px(146) + ';right:14px;top:8px;') + 'border-radius:22px 22px 22px 6px;padding:12px;display:flex;flex-direction:column;gap:6px;box-sizing:border-box';
-  L.askStyle = DISPLAY + 'font-size:' + (big ? 20 : 18) + 'px;line-height:1.15;color:#0F172A';
-  L.subStyle = 'font-size:14px;font-weight:600;color:#475569;line-height:1.3';
+  L.askStyle = DISPLAY + 'font-size:' + FS.title + ';line-height:1.15;color:#0F172A';
+  L.subStyle = 'font-size:' + FS.bodyS + ';font-weight:600;color:#475569;line-height:1.3';
   L.tw1 = 'position:absolute;left:24px;top:28px';
   L.tw2 = 'position:absolute;left:' + (big ? '210px' : px(128)) + ';top:' + (big ? '170px' : px(90)) + ';animation-delay:.6s';
   L.zzz = 'position:absolute;left:' + px(112) + ';top:6px';
   L.tourAshaBox = 'width:96px;height:112px;flex-shrink:0;border-radius:22px;overflow:hidden;background:linear-gradient(160deg,#FCE7F3,#FEF3C7);border:2.5px solid #F9A8D4';
   L.tourAsha = 'width:200px;height:auto;margin-left:-52px;margin-top:-2px';
-  L.tourText = DISPLAY + 'font-size:18px;line-height:1.22;color:#0F172A';
+  L.tourText = DISPLAY + 'font-size:' + FS.title + ';line-height:1.22;color:#0F172A';
 
   // step panel: from below the stage to 18px above the bottom
   L.panel = 'position:absolute;left:' + (X0 + 18) + 'px;width:' + (CW - 36) + 'px;top:' + pTop + 'px;height:' + (H - pTop - 18) + 'px;display:flex;flex-direction:column;gap:10px;z-index:10';
@@ -56,7 +57,7 @@ export function journeyLayoutPhone(c: Ctx, compact: boolean): Layout {
 
   // map and tour: map card on top, glass panel at the bottom
   const mb = phoneMapBox(c.f, s);
-  L.mapTitle = 'position:absolute;left:' + (X0 + 18) + 'px;top:96px;font-size:24px;z-index:10;display:none';
+  L.mapTitle = 'position:absolute;left:' + (X0 + 18) + 'px;top:96px;font-size:' + FS.heading + ';z-index:10;display:none';
   L.mapBox = 'position:absolute;left:' + (X0 + 10) + 'px;top:' + mb.mapTop + 'px;width:' + (CW - 20) + 'px;height:' + mb.mapH + 'px;border-radius:26px;overflow:hidden;box-shadow:0 14px 34px rgba(120,53,15,.28),inset 0 0 0 3px rgba(180,120,60,.35);background:#EAD7AE;z-index:10';
   L.mapScroll = 'width:' + (CW - 20) + 'px;height:' + mb.mapH + 'px;overflow-x:auto;overflow-y:hidden';
   if (sc === 'map' || sc === 'tour') {
@@ -67,7 +68,7 @@ export function journeyLayoutPhone(c: Ctx, compact: boolean): Layout {
   // celebrations: the art cluster keeps its size unless the screen is too narrow or short; the rest stretches
   const celK = clamp(Math.min((CW - 36) / CEL_ART.w, (H - HUD_H - CEL_REST) / CEL_ART.h), 0.55, 1);
   L.cel = 'position:absolute;left:' + X0 + 'px;top:' + HUD_H + 'px;width:' + CW + 'px;height:' + (H - HUD_H) + 'px;z-index:12;display:flex;flex-direction:column;align-items:center;padding:0 18px 22px;box-sizing:border-box' + (H < 844 || (CW - 36) / CEL_ART.w < 1 ? ';overflow-y:auto;overflow-x:hidden;scrollbar-width:none' : '');
-  L.celTitle = 'margin-top:8px;' + DISPLAY + 'font-size:30px;color:#0F172A;text-align:center;line-height:1.1';
+  L.celTitle = 'margin-top:8px;' + DISPLAY + 'font-size:' + FS.display + ';color:#0F172A;text-align:center;line-height:1.1';
   L.celStage = 'position:relative;width:' + CEL_ART.w + 'px;height:' + CEL_ART.h + 'px;margin-top:2px;flex-shrink:0' + shrinkBox(CEL_ART.w, CEL_ART.h, celK);
   L.celRays = 'position:absolute;left:7px;top:-12px;width:340px;height:340px';
   L.celAsha = 'position:absolute;left:30px;top:24px;width:320px;height:auto';
@@ -89,6 +90,6 @@ export function journeyLayoutPhone(c: Ctx, compact: boolean): Layout {
   L.toastAsha = 'position:absolute;left:' + (Math.round((W - toastW) / 2) + 25) + 'px;bottom:' + ASHA_FOOT + 'px;width:' + toastW + 'px;height:auto';
   L.countAsha = 'position:absolute;left:' + Math.round((W - countW) / 2) + 'px;bottom:' + ASHA_FOOT + 'px;width:' + countW + 'px;height:auto';
   L.sheet = 'width:' + CW + 'px;box-sizing:border-box;background:#FFFFFF;border-radius:30px 30px 0 0;padding:0 20px 22px;display:flex;flex-direction:column;align-items:center;gap:10px';
-  L.qText = DISPLAY + 'font-size:22px;line-height:1.25;color:#0F172A';
+  L.qText = DISPLAY + 'font-size:' + FS.heading + ';line-height:1.25;color:#0F172A';
   return L;
 }

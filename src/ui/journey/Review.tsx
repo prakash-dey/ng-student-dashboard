@@ -19,8 +19,8 @@ export function Review({ v }: { v: V }) {
                     </svg>
                   </span>
                   <span style="display: flex; flex-direction: column; flex-grow: 1; min-width: 0">
-                    <span style="font-size: 12px; font-weight: 700; color: #64748B">{r.label}</span>
-                    <span style="font-weight: 800; font-size: 16px; color: #0F172A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">
+                    <span style="font-size: var(--fs-caption); font-weight: 700; color: #64748B">{r.label}</span>
+                    <span style="font-weight: 800; font-size: var(--fs-body); color: #0F172A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">
                       {r.value}
                     </span>
                   </span>

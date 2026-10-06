@@ -14,7 +14,7 @@ export function Checklist({ v }: { v: V }) {
               <div style="flex-grow: 1; height: 12px; border-radius: 999px; background: #F1F5F9; overflow: hidden">
                 <div class="track-fill" style={v.checkUi.bar} />
               </div>
-              <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; color: #047857">{v.checkUi.count}</span>
+              <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: var(--fs-title); color: #047857">{v.checkUi.count}</span>
             </div>
             {(v.checkItems || []).map((c: any, i0: number) => (
               <Fragment key={i0}>
@@ -25,8 +25,8 @@ export function Checklist({ v }: { v: V }) {
                     </svg>
                   </span>
                   <span style="display: flex; flex-direction: column; flex-grow: 1; text-align: left">
-                    <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 19px; color: #0F172A; line-height: 1.1">{c.label}</span>
-                    <span style="font-size: 13px; font-weight: 700; color: #64748B">{c.sub}</span>
+                    <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: var(--fs-label); color: #0F172A; line-height: 1.1">{c.label}</span>
+                    <span style="font-size: var(--fs-small); font-weight: 700; color: #64748B">{c.sub}</span>
                   </span>
                   <span style={c.box}>
                     {c.done ? (

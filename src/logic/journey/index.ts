@@ -1,6 +1,7 @@
 // Values for the journey (zone 'journey'): every section's values plus which parts of the screen show.
 import type { AppLogic } from '../app';
 import { langChips } from '../common';
+import { FS } from '../styles';
 import { makeAdvance } from './advance';
 import { celebrationVals } from './celebration';
 import { makeCtx, type Ctx } from './context';
@@ -87,7 +88,7 @@ export function journeyVals(app: AppLogic) {
     dlg: dialogVals(c, stepsLeft, test.timer.answered),
     ...visibility(c),
     ...effectsVals(c),
-    langChips: langChips(s.lang, (lang) => c.set({ lang, langSeen: true }), D ? [42, 34, 7, 13] : [34, 30, 7, 13], 'box-shadow:0 2px 6px rgba(233,30,99,.4);'),
+    langChips: langChips(s.lang, (lang) => c.set({ lang, langSeen: true }), D ? [42, 34, 7] : [34, 30, 7], FS.small, 'box-shadow:0 2px 6px rgba(233,30,99,.4);'),
     ...fields, ...photoVals(c), ...dobVals(c), ...choices, ...placeVals(c), ...school.vals, ...reviewVals(c),
     ...test.vals, ...roundsVals(c), ...tourVals(c), ...offer.vals, ...joiningVals(c), ...celebrationVals(c), ...mapVals(c),
     // feedback overlays

@@ -4,6 +4,7 @@ import type { AppLogic } from '../app';
 import { langChips, leaves } from '../common';
 import { landingLayout } from './layout';
 import { campusCards, courseSection, freeCards, stories } from './content';
+import { FS } from '../styles';
 
 const LEAF_COLORS = ['#10B981', '#34D399', '#059669', '#F59E0B', '#FBBF24', '#86EFAC'];
 
@@ -15,7 +16,7 @@ export function landingVals(app: AppLogic) {
   return {
     L: landingLayout(D, f, s.page, s.course !== null && s.page === 3), t,
     leaves: leaves(D ? 18 : 12, LEAF_COLORS, f.W, 16),
-    langChips: langChips(s.lang, (lang) => set({ lang }), D ? [46, 36, 8, 14] : [38, 32, 8, 14], ''),
+    langChips: langChips(s.lang, (lang) => set({ lang }), D ? [46, 36, 8] : [38, 32, 8], D ? '14px' : FS.bodyS, ''),
     commonChips: t.x.common,
     cards: freeCards(t, D),
     ...courseSection(t, s, D, set),
@@ -32,6 +33,6 @@ export function landingVals(app: AppLogic) {
     replay: () => app.enterJourney(),
     login: () => app.enterLogin(),
     loginLabel: I18N[s.lang].extra.login,
-    loginStyle: 'flex-shrink:0;height:' + (D ? 44 : 40) + 'px;padding:0 ' + (D ? 22 : 14) + "px;border-radius:999px;border:none;background:linear-gradient(135deg,#E91E63,#BE185D);color:#FFFFFF;box-shadow:0 3px 0 #9D174D;cursor:pointer;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',sans-serif;font-weight:800;font-size:" + (D ? 16 : 14) + 'px',
+    loginStyle: 'flex-shrink:0;height:' + (D ? 44 : 40) + 'px;padding:0 ' + (D ? 22 : 14) + "px;border-radius:999px;border:none;background:linear-gradient(135deg,#E91E63,#BE185D);color:#FFFFFF;box-shadow:0 3px 0 #9D174D;cursor:pointer;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',sans-serif;font-weight:800;font-size:" + (D ? '16px' : FS.bodyS),
   };
 }

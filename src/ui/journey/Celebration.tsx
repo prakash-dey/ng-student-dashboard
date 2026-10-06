@@ -17,7 +17,7 @@ export function Celebration({ v }: { v: V }) {
           ) : null}
           <div style={v.L.cel}>
             <div class="pop" style="display: flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1.5px solid #F9A8D4; border-radius: 999px; padding: 5px 14px">
-              <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 11px; letter-spacing: .18em; color: #BE185D">{v.cel.pill}</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: var(--fs-micro); letter-spacing: .18em; color: #BE185D">{v.cel.pill}</span>
             </div>
             <div class="pop" style={v.L.celTitle}>{v.cel.title}</div>
             <div style={v.L.celStage}>
@@ -41,16 +41,16 @@ export function Celebration({ v }: { v: V }) {
             </div>
             <div class="glass pop" style={v.L.celCard}>
               <div style="display: flex; flex-direction: column; flex-grow: 1; min-width: 0">
-                <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 10px; letter-spacing: .16em; color: #B45309">
+                <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: var(--fs-micro); letter-spacing: .16em; color: #B45309">
                   {v.t.badgeUnlocked}
                 </span>
-                <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 24px; color: #0F172A; line-height: 1.1">{v.cel.badge.name}</span>
+                <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: var(--fs-heading); color: #0F172A; line-height: 1.1">{v.cel.badge.name}</span>
                 {v.cel.hasChips ? (
                   <>
                     <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px">
                       {(v.cel.chips || []).map((c: any, i0: number) => (
                         <Fragment key={i0}>
-                          <span style="font-size: 12px; font-weight: 800; padding: 3px 9px; border-radius: 999px; background: #FCE7F3; color: #9D174D">{c}</span>
+                          <span style="font-size: var(--fs-caption); font-weight: 800; padding: 3px 9px; border-radius: 999px; background: #FCE7F3; color: #9D174D">{c}</span>
                         </Fragment>
                       ))}
                     </div>
@@ -71,10 +71,10 @@ export function Celebration({ v }: { v: V }) {
                     </div>
                   </div>
                   <div style="display: flex; flex-direction: column">
-                    <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 10px; letter-spacing: .16em; color: #FDE68A">
+                    <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: var(--fs-micro); letter-spacing: .16em; color: #FDE68A">
                       {v.t.hallTitle}
                     </span>
-                    <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 17px; color: #FFFFFF; line-height: 1.15">
+                    <span style="font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: var(--fs-label); color: #FFFFFF; line-height: 1.15">
                       {v.hallLine}
                     </span>
                   </div>
@@ -96,13 +96,13 @@ export function Celebration({ v }: { v: V }) {
             ) : null}
             <div style="flex-grow: 1" />
             <div style={v.L.celBtns}>
-              <button class="glow-btn" onClick={v.cel.primaryOn} style="height: 64px; border: none; border-radius: 999px; color: #FFFFFF; font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; flex-grow: 1">
+              <button class="glow-btn" onClick={v.cel.primaryOn} style="height: 64px; border: none; border-radius: 999px; color: #FFFFFF; font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: var(--fs-button); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; flex-grow: 1">
                 {v.cel.primaryLabel}{" "}
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
               </button>
-              <button onClick={v.miniReward} style="height: 56px; border: 2px solid #22C55E; border-radius: 999px; background: #FFFFFF; color: #15803D; font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 0 #BBF7D0; flex-grow: 1; padding: 0 20px">
+              <button onClick={v.miniReward} style="height: 56px; border: 2px solid #22C55E; border-radius: 999px; background: #FFFFFF; color: #15803D; font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: var(--fs-button-sm); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 0 #BBF7D0; flex-grow: 1; padding: 0 20px">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="#16A34A" aria-hidden="true">
                   <path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z" />
                 </svg>

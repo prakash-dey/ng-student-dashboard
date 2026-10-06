@@ -9,7 +9,7 @@ export function Design({ v }: { v: V }) {
   const isPc = v.D;
   return (
     <>
-      <div style={`width: ${v.W}px; height: ${v.H}px; position: relative; overflow: hidden; background: #FFFBF3; font-size: 17px; line-height: 1.4`}>
+      <div style={`width: ${v.W}px; height: ${v.H}px; position: relative; overflow: hidden; background: #FFFBF3; font-size: var(--fs-body-l); line-height: 1.4`}>
         {/* ZONE 1: ABOUT NAVGURUKUL LANDING PAGES */}
         <AboutNavgurukulLandingPages v={v} />
         {/* ZONE 2: STUDENT JOURNEY */}

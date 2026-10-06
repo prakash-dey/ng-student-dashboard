@@ -39,20 +39,20 @@ export function Photo({ v }: { v: V }) {
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <path d={p.d} />
                     </svg>
-                    <span style="font-size: 12.5px; font-weight: 600; color: #64748B; text-align: center">{p.label}</span>
+                    <span style="font-size: var(--fs-caption); font-weight: 600; color: #64748B; text-align: center">{p.label}</span>
                   </div>
                 </Fragment>
               ))}
             </div>
             <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%">
-              <button class="lift" onClick={v.takePhoto} style="height: 56px; border-radius: 18px; border: 2px solid #FBCFE8; background: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 800; font-size: 16px; color: #9D174D; cursor: pointer; box-shadow: 0 4px 0 #FBCFE8">
+              <button class="lift" onClick={v.takePhoto} style="height: 56px; border-radius: 18px; border: 2px solid #FBCFE8; background: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 800; font-size: var(--fs-body); color: #9D174D; cursor: pointer; box-shadow: 0 4px 0 #FBCFE8">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M3 8h4l2-3h6l2 3h4v12H3z" />
                   <circle cx="12" cy="13" r="3.5" />
                 </svg>
                 {v.t.takePhoto}
               </button>
-              <button class="lift" onClick={v.takePhoto} style="height: 56px; border-radius: 18px; border: 2px solid #E2E8F0; background: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 800; font-size: 16px; color: #334155; cursor: pointer; box-shadow: 0 4px 0 #E2E8F0">
+              <button class="lift" onClick={v.takePhoto} style="height: 56px; border-radius: 18px; border: 2px solid #E2E8F0; background: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 800; font-size: var(--fs-body); color: #334155; cursor: pointer; box-shadow: 0 4px 0 #E2E8F0">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <rect x="3" y="4" width="18" height="16" rx="2" />
                   <circle cx="9" cy="10" r="2" />

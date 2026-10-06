@@ -3,6 +3,7 @@
 import { progress } from '../flow';
 import type { Ctx } from './context';
 import { trackWidthDesktop } from './layoutDesktop';
+import { FS } from '../styles';
 
 const ICONS = [
   'M12 22V12M12 12C12 7 8 5 4 5c0 4 3 7 8 7zm0 0c0-4 3-7 8-7 0 5-4 7-8 7',
@@ -37,7 +38,7 @@ export function hudVals(c: Ctx) {
         title: label, d: done ? DONE_ICON : ICONS[idx], icon: D ? 18 : 16,
         stroke: done ? '#FFFFFF' : now ? '#E91E63' : '#F9A8D4', cls: now ? 'node-now' : '',
         style: 'position:absolute;top:' + (D ? 2 : 5) + 'px;width:' + nodeSize + 'px;height:' + nodeSize + 'px;box-sizing:border-box;border-radius:999px;display:flex;align-items:center;justify-content:center;left:' + (TRACK_X0 + idx * gap - nodeSize / 2) + 'px;' + look,
-        labelStyle: 'position:absolute;top:' + (nodeSize + 2) + 'px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:11px;font-weight:800;color:' + (done ? '#047857' : now ? '#BE185D' : '#94A3B8')
+        labelStyle: 'position:absolute;top:' + (nodeSize + 2) + 'px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:' + FS.micro + ';font-weight:800;color:' + (done ? '#047857' : now ? '#BE185D' : '#94A3B8')
           // narrow trail: labels would collide, so only the current milestone keeps its label
           + (gap < LABEL_ROOM && !now ? ';visibility:hidden' : ''),
       };
