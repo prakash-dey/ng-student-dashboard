@@ -7,5 +7,4 @@ playwright-report
 .sheets
 .cache
 design-handoff
-
-design-handoff/
+scripts/
