@@ -19,6 +19,18 @@ export interface Frame {
   scrollCol(top: number, bottom: number): string;
 }
 
+/**
+ * Style for a fixed-size block of artwork (w x h, laid out in normal flow) shown at scale k <= 1. The negative
+ * margins shrink its layout box too, so the content around it closes up. At k = 1 nothing is added.
+ */
+export function shrinkBox(w: number, h: number, k: number) {
+  if (k >= 1) return '';
+  const r = (n: number) => Math.round(n * 10) / 10;
+  return `;transform:scale(${r(k * 1000) / 1000});transform-origin:50% 0;margin-bottom:${r(-h * (1 - k))}px;margin-left:${r((-w * (1 - k)) / 2)}px;margin-right:${r((-w * (1 - k)) / 2)}px`;
+}
+
+export const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
+
 export function makeFrame(device: Device, view: { w: number; h: number }): Frame {
   const W = Math.max(view.w, MIN[device].w);
   const H = Math.max(view.h, MIN[device].h);

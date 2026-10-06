@@ -8,7 +8,8 @@ export function landingLayoutPhone(f: Frame, hide: string, stamp: string): Layou
   const L: Layout = {};
   L.bg = 'position:absolute;left:0;top:0;width:100%;height:100%;background-position:38% 50%';
   L.overlay = 'position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(255,251,243,.96) 0%,rgba(255,251,243,.9) 26%,rgba(255,251,243,.35) 44%,rgba(255,251,243,.1) 62%,rgba(255,251,243,.75) 86%,rgba(255,251,243,.95) 100%)';
-  L.bar = 'position:absolute;left:0;top:0;width:' + W + 'px;box-sizing:border-box;padding:12px 14px;display:flex;align-items:center;gap:8px;z-index:20';
+  // top bar: full width, content aligned to the column (equal gutters both ends)
+  L.bar = 'position:absolute;left:0;top:0;width:' + W + 'px;box-sizing:border-box;padding:12px ' + (X0 + 14) + 'px;display:flex;align-items:center;gap:8px;z-index:20';
   L.logo = 'height:26px;width:auto;min-width:0;flex-shrink:1;object-fit:contain;object-position:left center'; // only the logo gives way on very narrow screens
   // page 1: heading and Asha share one column between the top bar and the CTA; Asha takes what is left
   L.p1Stack = 'position:absolute;left:' + X0 + 'px;width:' + CW + 'px;top:78px;bottom:144px;display:flex;flex-direction:column;z-index:10;pointer-events:none';

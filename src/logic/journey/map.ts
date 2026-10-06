@@ -1,6 +1,7 @@
 // Journey map: the illustrated path with Asha walking between milestones, flags, and the "next level" card.
 import { MAP_SIZE, mapScale, walkerPos } from '../geometry';
 import type { Ctx } from './context';
+import { phoneMapBox } from './mapBox';
 
 /** Pulsing ring position per level (map px); the tour adds the start point first. */
 const RINGS = [[250, 440], [710, 420], [1020, 520], [1370, 290]];
@@ -13,9 +14,10 @@ const LEVEL_COLS = ['linear-gradient(135deg,#F472B6,#E91E63)', 'linear-gradient(
 export function mapVals(c: Ctx) {
   const { s, t, D, app, lv } = c;
   const device = app.DEVICE;
-  const ms = mapScale(device);
+  const box = D ? undefined : phoneMapBox(c.f, s).box;
+  const ms = mapScale(device, box);
   const mw = Math.round(MAP_SIZE.w * ms), mh = Math.round(MAP_SIZE.h * ms);
-  const pos = walkerPos(s.lvl, s.walkT, device);
+  const pos = walkerPos(s.lvl, s.walkT, device, box);
   const ww = D ? 60 : 48, wh = D ? 112 : 90;
   const isTour = c.sc === 'tour';
   const ring = isTour ? TOUR_RINGS[s.tourStop] : RINGS[s.lvl - 1];

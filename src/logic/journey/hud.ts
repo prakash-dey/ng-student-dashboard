@@ -15,12 +15,13 @@ const DONE_ICON = 'M5 12.5l4.5 4.5L19 7.5';
 /** distance of the first/last node from the track ends */
 export const TRACK_X0 = 22;
 
-export const trackWidth = (D: boolean) => (D ? 620 : 362);
+/** Progress trail width: fixed on desktop, the content column minus the HUD's padding on phone. */
+export const trackWidth = (c: Ctx) => (c.D ? 620 : c.f.CW - 28);
 
 export function hudVals(c: Ctx) {
   const { s, t, D, sc } = c;
   const prog = progress(s, c.reg);
-  const gap = (trackWidth(D) - 2 * TRACK_X0) / 5;
+  const gap = (trackWidth(c) - 2 * TRACK_X0) / 5;
   const nodeSize = D ? 34 : 28;
   const names = [t.hudReg, t.lvlTitle[0], t.lvlTitle[1], t.lvlTitle[2], t.lvlTitle[3], t.hudCampus];
   return {

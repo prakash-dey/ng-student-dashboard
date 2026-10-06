@@ -11,10 +11,13 @@ import path from 'node:path';
 
 const [re = '.', which = 'all', outDir = '.sheets'] = process.argv.slice(2);
 const BASE = process.env.BASE_URL ?? 'http://localhost:5173';
-const SIZES = {
+// SIZES env narrows the set, e.g. SIZES=320x600,412x915
+const pick = (list) => (process.env.SIZES ? process.env.SIZES.split(',').map((x) => x.split('x').map(Number)).filter(([w]) => list.some(([lw]) => (lw < 900) === (w < 900))) : list);
+const ALL = {
   phone: [[320, 600], [360, 640], [360, 780], [390, 844], [412, 915], [480, 854], [600, 960], [768, 1024]],
   pc: [[900, 700], [1024, 768], [1280, 720], [1366, 768], [1440, 900], [1536, 864], [1920, 1080], [2560, 1440]],
 };
+const SIZES = { phone: pick(ALL.phone), pc: pick(ALL.pc) };
 const states = JSON.parse(fs.readFileSync('design-handoff/reference/states.json', 'utf8')).filter((s) => new RegExp(re).test(s.name));
 fs.mkdirSync(outDir, { recursive: true });
 

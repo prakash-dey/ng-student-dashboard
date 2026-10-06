@@ -11,10 +11,16 @@ export const LEGS: number[][][] = [
   [[1090, 650], [1180, 610], [1250, 520], [1320, 440], [1420, 420]],
 ];
 
-export const mapScale = (device: Device) => (device === 'phone' ? 446 / 934 : 820 / 1604);
+/** Phone map card size; 370x446 at the design size. */
+export interface MapBox { w: number; h: number }
+
+/** Screen px per map px. Phone: the map fills the card's height (and at least its width; it scrolls sideways);
+ *  desktop: 820px wide. */
+export const mapScale = (device: Device, box: MapBox = { w: 370, h: 446 }) =>
+  device === 'phone' ? Math.max(box.h / MAP_SIZE.h, box.w / MAP_SIZE.w) : 820 / MAP_SIZE.w;
 
 /** Asha's position (screen px) after walking fraction `t` (0..1) of level `lvl`'s leg. */
-export function walkerPos(lvl: number, t: number, device: Device) {
+export function walkerPos(lvl: number, t: number, device: Device, box?: MapBox) {
   const leg = LEGS[Math.max(0, Math.min(3, lvl - 1))];
   const dist = [0];
   let total = 0;
@@ -32,6 +38,6 @@ export function walkerPos(lvl: number, t: number, device: Device) {
       break;
     }
   }
-  const s = mapScale(device);
+  const s = mapScale(device, box);
   return { x: x * s, y: y * s };
 }

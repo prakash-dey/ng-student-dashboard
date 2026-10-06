@@ -3,7 +3,8 @@ import type { Advance } from './advance';
 import type { Ctx } from './context';
 import { isCompact } from './layout';
 
-const PILL = "font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;letter-spacing:.12em;padding:4px 12px;border-radius:999px;background:#ECFDF5;border:1.5px solid #6EE7B7;color:#047857;white-space:nowrap";
+// (max-width/ellipsis only matter on very narrow phones, where the nav row is tight)
+const PILL = "font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;letter-spacing:.12em;padding:4px 12px;border-radius:999px;background:#ECFDF5;border:1.5px solid #6EE7B7;color:#047857;white-space:nowrap;max-width:100%;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis";
 const PINK_PILL = PILL.replace('#ECFDF5', '#FDF2F8').replace('#6EE7B7', '#F9A8D4').replace('#047857', '#BE185D');
 
 export interface StepInputs {
@@ -20,7 +21,7 @@ export function stepConfig(c: Ctx, x: StepInputs) {
   const cfg: Record<string, any> = {
     ask: '', sub: '', hasPill: false, pill: '', pillStyle: PILL, hasNav: false, navBack: false, navClose: false, hasNavPill: false, navPill: '', navPillStyle: PILL,
     hasFooter: false, hasPrimary: false, primaryLabel: t.next, primaryOn: null, primaryDisabled: false, primaryCls: 'glow-btn', hasSecondary: false, secondaryLabel: '', secondaryOn: null,
-    secondaryStyle: "height:64px;padding:0 18px;border-radius:999px;border:2px solid #E2E8F0;background:#FFFFFF;color:#334155;font-family:'Baloo 2','Noto Sans Devanagari',sans-serif;font-weight:800;font-size:18px;cursor:pointer",
+    secondaryStyle: "flex:1 1 auto;white-space:nowrap;height:64px;padding:0 18px;border-radius:999px;border:2px solid #E2E8F0;background:#FFFFFF;color:#334155;font-family:'Baloo 2','Noto Sans Devanagari',sans-serif;font-weight:800;font-size:18px;cursor:pointer",
   };
   // registration steps: back, close, "N steps left", help
   const regNav = (ask: string, sub: string) => {
@@ -99,6 +100,6 @@ export function stepConfig(c: Ctx, x: StepInputs) {
   }
   cfg.hasSub = !!cfg.sub;
   // phone: compact screens have no room for the step pill
-  if (c.P && isCompact(sc)) cfg.hasPill = false;
+  if (isCompact(c)) cfg.hasPill = false;
   return { cfg, stepsLeft };
 }

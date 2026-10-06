@@ -41,14 +41,14 @@ export function Panel({ v }: { v: V }) {
                 <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0">
                   {v.cfg.navBack ? (
                     <>
-                      <button onClick={v.goBack} aria-label={v.t.back} class="soft-btn" style="width: 40px; height: 40px; border-radius: 999px; border: 1.5px solid #FBCFE8; background: #FFFFFF; color: #BE185D; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0">
+                      <button onClick={v.goBack} aria-label={v.t.back} class="soft-btn" style="flex-shrink: 0; width: 40px; height: 40px; border-radius: 999px; border: 1.5px solid #FBCFE8; background: #FFFFFF; color: #BE185D; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                           <path d="M15 6l-6 6 6 6" />
                         </svg>
                       </button>
                     </>
                   ) : null}
-                  <div style="flex-grow: 1; display: flex; justify-content: center">
+                  <div style="flex-grow: 1; min-width: 0; display: flex; justify-content: center">
                     {v.cfg.hasNavPill ? (
                       <>
                         <span style={v.cfg.navPillStyle}>{v.cfg.navPill}</span>
@@ -57,14 +57,14 @@ export function Panel({ v }: { v: V }) {
                   </div>
                   {v.cfg.hasHelp ? (
                     <>
-                      <button onClick={v.openHelp} class="soft-btn" style="min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #BAE6FD; background: #F0F9FF; color: #075985; font-weight: 800; font-size: 13px; white-space: nowrap; cursor: pointer; flex-shrink: 0">
+                      <button onClick={v.openHelp} class="soft-btn" style="flex-shrink: 0; min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #BAE6FD; background: #F0F9FF; color: #075985; font-weight: 800; font-size: 13px; white-space: nowrap; cursor: pointer; flex-shrink: 0">
                         {v.t.needHelp}
                       </button>
                     </>
                   ) : null}
                   {v.cfg.navClose ? (
                     <>
-                      <button onClick={v.askLeave} aria-label={v.t.saveExit} class="soft-btn" style="width: 40px; height: 40px; border-radius: 999px; border: 1.5px solid #E2E8F0; background: #FFFFFF; color: #475569; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0">
+                      <button onClick={v.askLeave} aria-label={v.t.saveExit} class="soft-btn" style="flex-shrink: 0; width: 40px; height: 40px; border-radius: 999px; border: 1.5px solid #E2E8F0; background: #FFFFFF; color: #475569; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
                           <path d="M6 6l12 12M18 6L6 18" />
                         </svg>

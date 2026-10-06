@@ -3,6 +3,7 @@
 import { DCLogic, type Device } from './dc';
 import { makeFrame } from './frame';
 import { walkerPos } from './geometry';
+import { phoneMapBox } from './journey/mapBox';
 import { fresh, type AppState, type Celebration, type Screen } from './state';
 import { landingVals } from './landing';
 import { journeyVals } from './journey';
@@ -99,7 +100,8 @@ export class AppLogic extends DCLogic {
   /** Phone map scrolls sideways to keep Asha in view. */
   follow() {
     if (!this.mapEl || this.DEVICE !== 'phone') return;
-    this.mapEl.scrollLeft = Math.max(0, walkerPos(this.state.lvl, this.state.walkT, this.DEVICE).x - 170);
+    const { box } = phoneMapBox(this.frame(), this.state);
+    this.mapEl.scrollLeft = Math.max(0, walkerPos(this.state.lvl, this.state.walkT, this.DEVICE, box).x - 170);
   }
   enterJourney() {
     this.setState({ zone: 'journey', langSeen: true, course: null });
