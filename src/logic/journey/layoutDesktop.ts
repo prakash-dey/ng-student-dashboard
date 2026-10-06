@@ -8,6 +8,8 @@ import { MAP_SIZE } from '../geometry';
 import type { Layout } from '../styles';
 import type { Ctx } from './context';
 
+/** Asha stands fully on screen in the toast and countdown (the design cropped her at the knees; changed on request). */
+const ASHA_FOOT = 8;
 const DISPLAY = "font-family:'Baloo 2','Noto Sans Devanagari',sans-serif;font-weight:800;";
 const HUD_H = 80;
 /** design stage size (left of the panel) */
@@ -73,8 +75,8 @@ export function journeyLayoutDesktop(c: Ctx): Layout {
 
   L.banner = 'position:absolute;left:' + panelL + 'px;width:' + panelW + 'px;top:96px;z-index:50;box-sizing:border-box;display:flex;align-items:center;gap:10px;padding:14px 20px;border-radius:22px;background:linear-gradient(135deg,#10B981,#047857);box-shadow:0 10px 26px rgba(4,120,87,.4)';
   L.mini = 'position:absolute;right:' + (DX + 90) + 'px;top:84px;z-index:50;display:flex;align-items:center;gap:6px;background:#0F172A;border-radius:999px;padding:6px 14px 6px 10px;box-shadow:0 6px 16px rgba(15,23,42,.3)';
-  L.toastAsha = 'position:absolute;left:' + (DX + 120) + 'px;bottom:-60px;width:460px;height:auto';
-  L.countAsha = 'position:absolute;left:' + (DX + 100) + 'px;bottom:-60px;width:480px;height:auto';
+  L.toastAsha = 'position:absolute;left:' + (DX + 120) + 'px;bottom:' + ASHA_FOOT + 'px;width:460px;height:auto';
+  L.countAsha = 'position:absolute;left:' + (DX + 100) + 'px;bottom:' + ASHA_FOOT + 'px;width:480px;height:auto';
   L.sheet = 'width:520px;margin-bottom:170px;box-sizing:border-box;background:#FFFFFF;border-radius:32px;padding:0 28px 26px;display:flex;flex-direction:column;align-items:center;gap:12px';
   L.qText = DISPLAY + 'font-size:26px;line-height:1.25;color:#0F172A';
   return L;

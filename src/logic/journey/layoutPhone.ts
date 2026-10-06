@@ -8,6 +8,8 @@ import type { Layout } from '../styles';
 import type { Ctx } from './context';
 import { phoneMapBox } from './mapBox';
 
+/** Asha stands fully on screen in the toast and countdown (the design cropped her at the knees; changed on request). */
+const ASHA_FOOT = 8;
 const DISPLAY = "font-family:'Baloo 2','Noto Sans Devanagari',sans-serif;font-weight:800;";
 const HUD_H = 92;
 /** celebration: art cluster (rays + Asha + badge) and the fixed-height parts around it, at the design size */
@@ -84,8 +86,8 @@ export function journeyLayoutPhone(c: Ctx, compact: boolean): Layout {
   L.mini = 'position:absolute;right:' + (X0 + 14) + 'px;top:92px;z-index:50;display:flex;align-items:center;gap:6px;background:#0F172A;border-radius:999px;padding:6px 14px 6px 10px;box-shadow:0 6px 16px rgba(15,23,42,.3)';
   // step-complete toast and countdown: Asha centred on the screen, narrower on small phones
   const toastW = Math.min(300, Math.round(W * 0.77)), countW = Math.min(330, Math.round(W * 0.846));
-  L.toastAsha = 'position:absolute;left:' + (Math.round((W - toastW) / 2) + 25) + 'px;bottom:-40px;width:' + toastW + 'px;height:auto';
-  L.countAsha = 'position:absolute;left:' + Math.round((W - countW) / 2) + 'px;bottom:-30px;width:' + countW + 'px;height:auto';
+  L.toastAsha = 'position:absolute;left:' + (Math.round((W - toastW) / 2) + 25) + 'px;bottom:' + ASHA_FOOT + 'px;width:' + toastW + 'px;height:auto';
+  L.countAsha = 'position:absolute;left:' + Math.round((W - countW) / 2) + 'px;bottom:' + ASHA_FOOT + 'px;width:' + countW + 'px;height:auto';
   L.sheet = 'width:' + CW + 'px;box-sizing:border-box;background:#FFFFFF;border-radius:30px 30px 0 0;padding:0 20px 22px;display:flex;flex-direction:column;align-items:center;gap:10px';
   L.qText = DISPLAY + 'font-size:22px;line-height:1.25;color:#0F172A';
   return L;

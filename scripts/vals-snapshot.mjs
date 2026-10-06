@@ -18,6 +18,7 @@ globalThis.matchMedia = () => ({ matches: false });
 const server = await createServer({ server: { middlewareMode: true, hmr: false }, appType: 'custom', logLevel: 'error' });
 const { AppLogic } = await server.ssrLoadModule('/src/logic/app.ts');
 const { fresh } = await server.ssrLoadModule('/src/logic/state.ts');
+const { I18N } = await server.ssrLoadModule('/src/i18n/index.ts');
 const states = JSON.parse(fs.readFileSync('design-handoff/reference/states.json', 'utf8'));
 
 const plain = (o, seen = new Set()) => {
@@ -36,7 +37,8 @@ for (const dev of ['phone', 'desktop']) {
     const logic = new AppLogic(dev);
     const [w, h] = vw ? [+vw, +vh] : dev === 'phone' ? [390, 844] : [1440, 900];
     logic.setView(w, h);
-    const st = JSON.parse(JSON.stringify(s.state), (_k, v) => (v === '__now' ? FIXED_NOW : v));
+    const copy = I18N[s.state.lang || 'en'].journey;
+    const st = JSON.parse(JSON.stringify(s.state), (_k, v) => (v === '__now' ? FIXED_NOW : typeof v === 'string' && v.startsWith('__') && v.slice(2) in copy ? copy[v.slice(2)] : v));
     logic.state = { ...fresh(), ...st };
     out[`${dev}/${s.name}`] = plain(logic.renderVals());
   }
