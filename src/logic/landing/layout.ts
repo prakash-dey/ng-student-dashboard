@@ -3,13 +3,33 @@ import type { Frame } from '../frame';
 import { FONT_DISPLAY as disp, FONT_MONO, type Layout } from '../styles';
 import { landingLayoutPhone } from './layoutPhone';
 import { landingLayoutDesktop } from './layoutDesktop';
+import { clamp, DESIGN } from '../frame';
 
-export function landingLayout(D: boolean, f: Frame, page: number): Layout {
+/**
+ * PC: the About pages are composed as one picture (headline beside Asha, cards against the art), so the page
+ * content scales as a whole to fit the screen, centred; backgrounds, leaves and the bird stay full-bleed.
+ * At 1440x900 nothing is added.
+ */
+function desktopFit(f: Frame, hasSheet: boolean): Layout {
+  const { w, h } = DESIGN.desktop;
+  const s = clamp(Math.min(f.W / w, f.H / h), 0.6, 1.25);
+  const left = Math.round((f.W - w * s) / 2), top = Math.round((f.H - h * s) / 2);
+  if (s === 1 && left === 0 && top === 0) return { content: '' };
+  // stacking: above the bird and back leaves (z 9/5), below front leaves (z 16) unless the course sheet is open
+  return {
+    content: `position:absolute;left:${left}px;top:${top}px;width:${w}px;height:${h}px;transform:scale(${Math.round(s * 10000) / 10000});transform-origin:0 0;z-index:${hasSheet ? 41 : 9}`,
+    // the course sheet's backdrop still covers the whole screen (in the scaled box's coordinates)
+    scrim: `position:absolute;left:${-left / s}px;top:${-top / s}px;width:${f.W / s}px;height:${f.H / s}px;z-index:40;background:rgba(15,23,42,.55);display:flex;align-items:center;justify-content:center`,
+  };
+}
+
+export function landingLayout(D: boolean, f: Frame, page: number, hasSheet: boolean): Layout {
   const { X0, CW, col } = f;
   // page 1's heading and Asha fade out on the other pages
   const hide = page > 1 ? 'opacity:0;pointer-events:none;' : 'opacity:1;';
   const stamp = 'align-self:' + (D ? 'flex-start' : 'center') + ';display:flex;align-items:center;gap:8px;padding:' + (D ? '10px 22px' : '8px 16px') + ';border-radius:999px;background:#FFFFFF;border:2.5px dashed #E91E63;color:#BE185D;' + FONT_MONO + 'font-weight:700;letter-spacing:.14em;box-shadow:0 8px 22px rgba(233,30,99,.22);font-size:' + (D ? 16 : 13) + 'px';
   const L = D ? landingLayoutDesktop(hide, stamp) : landingLayoutPhone(f, hide, stamp);
+  if (D) Object.assign(L, desktopFit(f, hasSheet));
 
   L.stampInner = 'flex-grow:1;border-radius:999px;border:1px dashed #86C79B;display:flex;align-items:center;justify-content:center;color:#15803D;' + FONT_MONO + 'font-weight:700;letter-spacing:.04em;line-height:1;font-size:' + (D ? 11 : 10) + 'px';
 

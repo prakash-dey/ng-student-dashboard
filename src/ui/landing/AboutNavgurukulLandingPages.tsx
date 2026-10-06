@@ -32,40 +32,43 @@ export function AboutNavgurukulLandingPages({ v }: { v: V }) {
                 </svg>
               </Fragment>
             ))}
-            {/* top bar */}
-            <div style={v.LD.L.bar}>
-              <img src="/media/logo.webp" alt="NavGurukul" style={v.LD.L.logo} />
-              <div style="flex-grow: 1" />
-              <div style="display: flex; background: #FFFFFF; border: 1.5px solid #FBCFE8; border-radius: 999px; padding: 2px">
-                {(v.LD.langChips || []).map((c: any, i0: number) => (
-                  <Fragment key={i0}>
-                    <button onClick={c.pick} aria-label={c.aria} style={c.style}>{c.label}</button>
-                  </Fragment>
-                ))}
-              </div>
-              <button onClick={v.LD.login} style={v.LD.loginStyle}>{v.LD.loginLabel}</button>
-            </div>
-            {/* headline block + Asha (one column on phone, see L.p1Stack) */}
-            <div style={v.LD.L.p1Stack}>
-              <HeadlineBlock v={v} />
-              <Asha v={v} />
-            </div>
-            {/* CTA */}
-            <Cta v={v} />
             {/* bird flies across page 1 */}
             {v.LD.isP1 ? (
               <>
                 <div class="ld-bird-fly" style={v.LD.L.birdPos} aria-hidden="true"><div class="ld-bird" /></div>
               </>
             ) : null}
-            {/* PAGE 2 */}
-            <Page2 v={v} />
-            {/* PAGE 3: COURSES */}
-            <Page3Courses v={v} />
-            {/* PAGE 4: CAMPUSES */}
-            <Page4Campuses v={v} />
-            {/* PAGE 5: SUCCESS STORIES */}
-            <Page5SuccessStories v={v} />
+            {/* page content: scaled to fit on PC (L.content), plain on phone */}
+            <div style={v.LD.L.content}>
+              {/* top bar */}
+              <div style={v.LD.L.bar}>
+                <img src="/media/logo.webp" alt="NavGurukul" style={v.LD.L.logo} />
+                <div style="flex-grow: 1" />
+                <div style="display: flex; background: #FFFFFF; border: 1.5px solid #FBCFE8; border-radius: 999px; padding: 2px">
+                  {(v.LD.langChips || []).map((c: any, i0: number) => (
+                    <Fragment key={i0}>
+                      <button onClick={c.pick} aria-label={c.aria} style={c.style}>{c.label}</button>
+                    </Fragment>
+                  ))}
+                </div>
+                <button onClick={v.LD.login} style={v.LD.loginStyle}>{v.LD.loginLabel}</button>
+              </div>
+              {/* headline block + Asha (one column on phone, see L.p1Stack) */}
+              <div style={v.LD.L.p1Stack}>
+                <HeadlineBlock v={v} />
+                <Asha v={v} />
+              </div>
+              {/* CTA */}
+              <Cta v={v} />
+              {/* PAGE 2 */}
+              <Page2 v={v} />
+              {/* PAGE 3: COURSES */}
+              <Page3Courses v={v} />
+              {/* PAGE 4: CAMPUSES */}
+              <Page4Campuses v={v} />
+              {/* PAGE 5: SUCCESS STORIES */}
+              <Page5SuccessStories v={v} />
+            </div>
           </div>
         </>
       ) : null}

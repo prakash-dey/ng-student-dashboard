@@ -2,6 +2,7 @@
 // with a rocket that moves along it.
 import { progress } from '../flow';
 import type { Ctx } from './context';
+import { trackWidthDesktop } from './layoutDesktop';
 
 const ICONS = [
   'M12 22V12M12 12C12 7 8 5 4 5c0 4 3 7 8 7zm0 0c0-4 3-7 8-7 0 5-4 7-8 7',
@@ -14,9 +15,11 @@ const ICONS = [
 const DONE_ICON = 'M5 12.5l4.5 4.5L19 7.5';
 /** distance of the first/last node from the track ends */
 export const TRACK_X0 = 22;
+/** px between milestones needed to show every label */
+const LABEL_ROOM = 100;
 
 /** Progress trail width: fixed on desktop, the content column minus the HUD's padding on phone. */
-export const trackWidth = (c: Ctx) => (c.D ? 620 : c.f.CW - 28);
+export const trackWidth = (c: Ctx) => (c.D ? trackWidthDesktop(c.f.DW) : c.f.CW - 28);
 
 export function hudVals(c: Ctx) {
   const { s, t, D, sc } = c;
@@ -34,7 +37,9 @@ export function hudVals(c: Ctx) {
         title: label, d: done ? DONE_ICON : ICONS[idx], icon: D ? 18 : 16,
         stroke: done ? '#FFFFFF' : now ? '#E91E63' : '#F9A8D4', cls: now ? 'node-now' : '',
         style: 'position:absolute;top:' + (D ? 2 : 5) + 'px;width:' + nodeSize + 'px;height:' + nodeSize + 'px;box-sizing:border-box;border-radius:999px;display:flex;align-items:center;justify-content:center;left:' + (TRACK_X0 + idx * gap - nodeSize / 2) + 'px;' + look,
-        labelStyle: 'position:absolute;top:' + (nodeSize + 2) + 'px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:11px;font-weight:800;color:' + (done ? '#047857' : now ? '#BE185D' : '#94A3B8'),
+        labelStyle: 'position:absolute;top:' + (nodeSize + 2) + 'px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:11px;font-weight:800;color:' + (done ? '#047857' : now ? '#BE185D' : '#94A3B8')
+          // narrow trail: labels would collide, so only the current milestone keeps its label
+          + (gap < LABEL_ROOM && !now ? ';visibility:hidden' : ''),
       };
     }),
     fillStyle: 'position:absolute;left:' + TRACK_X0 + 'px;top:' + (D ? 16 : 17) + 'px;height:5px;border-radius:999px;width:' + Math.max(0, prog * gap) + 'px',

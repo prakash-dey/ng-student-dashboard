@@ -13,7 +13,7 @@ export function landingVals(app: AppLogic) {
   const set = (patch: object) => app.setState(patch);
   const page = (n: number) => () => set({ page: n, course: null });
   return {
-    L: landingLayout(D, f, s.page), t,
+    L: landingLayout(D, f, s.page, s.course !== null && s.page === 3), t,
     leaves: leaves(D ? 18 : 12, LEAF_COLORS, f.W, 16),
     langChips: langChips(s.lang, (lang) => set({ lang }), D ? [46, 36, 8, 14] : [38, 32, 8, 14], ''),
     commonChips: t.x.common,

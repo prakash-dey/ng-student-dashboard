@@ -7,12 +7,16 @@ export const DESIGN = { phone: { w: 390, h: 844 }, desktop: { w: 1440, h: 900 } 
 const MIN = { phone: { w: 320, h: 600 }, desktop: { w: 900, h: 640 } } as const;
 /** Phone layouts use a content column: full width up to this, centred beyond (tablets). */
 const PHONE_COLUMN_MAX = 560;
+/** PC layouts use a content box: full width up to the design width, centred beyond. */
+const DESKTOP_CONTENT_MAX = 1440;
 
 export interface Frame {
   /** frame size in px */
   W: number; H: number;
   /** phone content column: width and left offset */
   CW: number; X0: number;
+  /** PC content box: width and left offset */
+  DW: number; DX: number;
   /** absolute box spanning the content column between two y anchors (px from top / bottom) */
   col(top: number, bottom: number): string;
   /** like col(), as a flex column that scrolls only when the screen is too short for its content */
@@ -36,8 +40,10 @@ export function makeFrame(device: Device, view: { w: number; h: number }): Frame
   const H = Math.max(view.h, MIN[device].h);
   const CW = Math.min(W, PHONE_COLUMN_MAX);
   const X0 = Math.round((W - CW) / 2);
+  const DW = Math.min(W, DESKTOP_CONTENT_MAX);
+  const DX = Math.round((W - DW) / 2);
   const col = (top: number, bottom: number) => `position:absolute;left:${X0}px;width:${CW}px;top:${top}px;bottom:${bottom}px;`;
   const scrollCol = (top: number, bottom: number) =>
     col(top, bottom) + 'display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;z-index:10;';
-  return { W, H, CW, X0, col, scrollCol };
+  return { W, H, CW, X0, DW, DX, col, scrollCol };
 }

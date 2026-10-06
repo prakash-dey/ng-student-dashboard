@@ -15,9 +15,9 @@ export const LEGS: number[][][] = [
 export interface MapBox { w: number; h: number }
 
 /** Screen px per map px. Phone: the map fills the card's height (and at least its width; it scrolls sideways);
- *  desktop: 820px wide. */
-export const mapScale = (device: Device, box: MapBox = { w: 370, h: 446 }) =>
-  device === 'phone' ? Math.max(box.h / MAP_SIZE.h, box.w / MAP_SIZE.w) : 820 / MAP_SIZE.w;
+ *  desktop: the map fills the card's width (820px at the design size). */
+export const mapScale = (device: Device, box?: MapBox) =>
+  device === 'phone' ? Math.max((box?.h ?? 446) / MAP_SIZE.h, (box?.w ?? 370) / MAP_SIZE.w) : (box?.w ?? 820) / MAP_SIZE.w;
 
 /** Asha's position (screen px) after walking fraction `t` (0..1) of level `lvl`'s leg. */
 export function walkerPos(lvl: number, t: number, device: Device, box?: MapBox) {
