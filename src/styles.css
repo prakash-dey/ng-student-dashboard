@@ -1,0 +1,32 @@
+/* Order matters: tokens (+ self-hosted fonts), then the design's verbatim classes, then Tailwind utilities.
+   No Tailwind preflight: the design was drawn on browser defaults. */
+@import "../design-handoff/tokens.css";
+@import "../design-handoff/design/design.css";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme inline {
+  --color-pink: var(--pink); --color-pink-50: var(--pink-50); --color-pink-100: var(--pink-100); --color-pink-200: var(--pink-200);
+  --color-pink-300: var(--pink-300); --color-pink-400: var(--pink-400); --color-pink-500: var(--pink-500); --color-pink-600: var(--pink-600);
+  --color-pink-700: var(--pink-700); --color-pink-800: var(--pink-800);
+  --color-gold: var(--gold); --color-gold-100: var(--gold-100); --color-gold-200: var(--gold-200); --color-gold-400: var(--gold-400);
+  --color-gold-600: var(--gold-600); --color-gold-700: var(--gold-700);
+  --color-green: var(--green); --color-green-50: var(--green-50); --color-green-100: var(--green-100); --color-green-400: var(--green-400);
+  --color-green-600: var(--green-600); --color-green-700: var(--green-700); --color-green-800: var(--green-800);
+  --color-sky: var(--sky); --color-sky-100: var(--sky-100); --color-sky-600: var(--sky-600); --color-sky-700: var(--sky-700);
+  --color-violet: var(--violet); --color-violet-100: var(--violet-100); --color-violet-600: var(--violet-600); --color-violet-700: var(--violet-700);
+  --color-red-700: var(--red-700); --color-red-800: var(--red-800); --color-orange-50: var(--orange-50); --color-orange-800: var(--orange-800);
+  --color-ink: var(--ink); --color-ink-700: var(--ink-700); --color-ink-600: var(--ink-600); --color-ink-500: var(--ink-500); --color-ink-400: var(--ink-400);
+  --color-line: var(--line); --color-line-300: var(--line-300); --color-surface-50: var(--surface-50); --color-surface-100: var(--surface-100);
+  --color-white: var(--white); --color-page: var(--page); --color-focus: var(--focus);
+  --font-display: var(--font-display); --font-body: var(--font-body); --font-mono: var(--font-mono);
+  --radius-pill: var(--r-pill); --radius-sm: var(--r-sm); --radius-md: var(--r-md); --radius-lg: var(--r-lg); --radius-xl: var(--r-xl);
+  --radius-2xl: var(--r-2xl); --radius-3xl: var(--r-3xl); --radius-4xl: var(--r-4xl); --radius-panel: var(--r-panel);
+  --shadow-primary: var(--shadow-primary); --shadow-card: var(--shadow-card); --shadow-card-pink: var(--shadow-card-pink);
+  --shadow-float: var(--shadow-float); --shadow-dialog: var(--shadow-dialog);
+  --ease-pop: var(--ease-pop); --ease-rise: var(--ease-rise); --ease-slide: var(--ease-slide);
+}
+
+/* App frame (see src/app.tsx): phone below 900px, PC from 900px, never a horizontal scrollbar. */
+html, body { overflow-x: hidden; }
+#app { min-height: 100vh; }
