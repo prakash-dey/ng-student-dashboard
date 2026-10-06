@@ -12,6 +12,14 @@ export class DesignLogic extends DCLogic {
     this.state = this.fresh();
     this.timers = [];
   }
+  // ---------- responsive frame ----------
+  // The design is drawn at 390x844 (phone) and 1440x900 (pc). Layouts are computed for the real viewport:
+  // sizes stay as designed, gutters stay, widths stretch, top/bottom anchors are kept and the middle flexes.
+  // Below the minimums the frame stops shrinking and the page scrolls instead.
+  view = { w: 390, h: 844 };
+  setView(w: number, h: number) { this.view = { w: w, h: h }; }
+  frameW() { return Math.max(this.view.w, this.DEVICE === 'desktop' ? 900 : 320); }
+  frameH() { return Math.max(this.view.h, this.DEVICE === 'desktop' ? 640 : 600); }
   fresh() {
     return {
       zone: 'landing', phase: 0, page: 1, run: 0, course: null, tab: 0, camp: 0,
@@ -176,7 +184,9 @@ export class DesignLogic extends DCLogic {
   ldVals() {
     var self = this, s = this.state, D = this.DEVICE === 'desktop';
     var t = this.ldTexts();
-    var W = D ? 1440 : 390, H = D ? 900 : 844;
+    var W = this.frameW(), H = this.frameH();
+    // phone: content column (designed at 390 wide with 18px gutters), centred and capped on tablets
+    var CW = Math.min(W, 560), X0 = Math.round((W - CW) / 2);
     var L: any = {};
     var hide = s.page > 1 ? 'opacity:0;pointer-events:none;' : 'opacity:1;';
     var disp = "font-family:'Baloo 2','Noto Sans Devanagari',sans-serif;font-weight:800;";
@@ -184,20 +194,24 @@ export class DesignLogic extends DCLogic {
     if (!D) {
       L.bg = 'position:absolute;left:0;top:0;width:100%;height:100%;background-position:38% 50%';
       L.overlay = 'position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(255,251,243,.96) 0%,rgba(255,251,243,.9) 26%,rgba(255,251,243,.35) 44%,rgba(255,251,243,.1) 62%,rgba(255,251,243,.75) 86%,rgba(255,251,243,.95) 100%)';
-      L.bar = 'position:absolute;left:0;top:0;width:390px;box-sizing:border-box;padding:12px 14px;display:flex;align-items:center;gap:8px;z-index:20';
-      L.logo = 'height:26px;width:auto';
-      L.head = 'position:absolute;left:18px;top:78px;width:354px;display:flex;flex-direction:column;gap:14px;z-index:10;' + hide;
+      L.bar = 'position:absolute;left:0;top:0;width:' + W + 'px;box-sizing:border-box;padding:12px 14px;display:flex;align-items:center;gap:8px;z-index:20';
+      L.logo = 'height:26px;width:auto;min-width:0;flex-shrink:1;object-fit:contain;object-position:left center'; // only the logo gives way on very narrow screens
+      // page 1: heading and Asha share one column between the top bar and the CTA; Asha takes what is left
+      L.p1Stack = 'position:absolute;left:' + X0 + 'px;width:' + CW + 'px;top:78px;bottom:144px;display:flex;flex-direction:column;z-index:10;pointer-events:none';
+      L.head = 'position:relative;margin:0 18px;flex-shrink:0;display:flex;flex-direction:column;gap:14px;' + hide;
       L.stamp = stamp;
       L.h1 = disp + 'font-size:31px;line-height:1.12;color:#0F172A;text-align:center';
       L.h2 = disp + 'font-size:31px;line-height:1.12;color:#E91E63;text-align:center';
-      L.ashaZone = 'position:absolute;left:0;top:370px;width:390px;height:330px;z-index:10;' + hide;
+      L.ashaZone = 'position:relative;flex:1 1 0;min-height:0;' + hide;
+      L.ashaFitH = 330; L.ashaFitOrigin = '30% 100%';
+      L.bubbleBox = 'position:absolute;left:0;right:0;bottom:0;height:min(330px,100%)';
       L.walker = 'position:absolute;left:36px;top:60px;width:132px;height:250px';
       L.asha = 'position:absolute;left:-22px;top:56px;width:300px;height:auto';
       L.disc = 'position:absolute;left:44px;top:288px;width:170px;height:28px;border-radius:50%;background:radial-gradient(ellipse,rgba(236,72,153,.5),rgba(236,72,153,0) 70%)';
-      L.bubble = 'position:absolute;right:14px;top:0;width:214px;box-sizing:border-box;padding:14px 16px;border-radius:24px 24px 24px 6px;background:rgba(255,255,255,.94);border:1.5px solid #FFFFFF;box-shadow:0 10px 30px rgba(190,24,93,.18)';
+      L.bubble = 'position:absolute;right:14px;top:0;width:' + Math.min(214, CW - 154) + 'px;box-sizing:border-box;padding:14px 16px;border-radius:24px 24px 24px 6px;background:rgba(255,255,255,.94);border:1.5px solid #FFFFFF;box-shadow:0 10px 30px rgba(190,24,93,.18)';
       L.bubbleText = disp + 'font-size:19px;line-height:1.22;color:#0F172A';
       L.tw = 'position:absolute;left:26px;top:70px';
-      L.ctaWrap = 'position:absolute;left:18px;top:638px;width:354px;z-index:12;' + hide;
+      L.ctaPos = 'position:absolute;left:' + (X0 + 20) + 'px;width:' + (CW - 44) + 'px;bottom:34px';
       L.cta = "width:100%;height:68px;border:none;border-radius:999px;color:#FFFFFF;" + disp + 'font-size:25px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px';
       L.birdPos = 'position:absolute;left:0;top:268px;z-index:9';
       L.p2head = 'position:absolute;left:18px;top:70px;width:354px;display:flex;align-items:center;gap:14px;z-index:10';
@@ -241,7 +255,9 @@ export class DesignLogic extends DCLogic {
       L.bubble = 'position:absolute;left:365px;top:110px;width:300px;box-sizing:border-box;padding:22px 26px;border-radius:32px 32px 32px 8px;background:rgba(255,255,255,.95);border:1.5px solid #FFFFFF;box-shadow:0 14px 40px rgba(190,24,93,.2)';
       L.bubbleText = disp + 'font-size:30px;line-height:1.18;color:#0F172A';
       L.tw = 'position:absolute;left:40px;top:300px;transform:scale(1.6)';
-      L.ctaWrap = 'position:absolute;left:90px;top:500px;width:340px;z-index:12;' + hide;
+      L.ctaPos = 'position:absolute;left:84px;top:484px;width:330px';
+      L.p1Stack = 'position:absolute;left:0;top:0;width:100%;height:100%;z-index:10;pointer-events:none';
+      L.ashaFitH = 0; L.bubbleBox = '';
       L.cta = "width:100%;height:76px;border:none;border-radius:999px;color:#FFFFFF;" + disp + 'font-size:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px';
       L.birdPos = 'position:absolute;left:0;top:120px;z-index:9';
       L.p2head = 'position:absolute;left:90px;top:150px;width:600px;display:flex;flex-direction:column;align-items:flex-start;gap:20px;z-index:10';
@@ -429,6 +445,7 @@ export class DesignLogic extends DCLogic {
     LD.login = function () { self.enterLogin(); };
     LD.loginLabel = I18N[this.state.lang as Lang].extra.login;
     LD.loginStyle = "flex-shrink:0;height:" + (Dk ? 44 : 40) + "px;padding:0 " + (Dk ? 22 : 14) + "px;border-radius:999px;border:none;background:linear-gradient(135deg,#E91E63,#BE185D);color:#FFFFFF;box-shadow:0 3px 0 #9D174D;cursor:pointer;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',sans-serif;font-weight:800;font-size:" + (Dk ? 16 : 14) + 'px';
+    v.W = this.frameW(); v.H = this.frameH();
     v.LD = LD; v.inLanding = this.state.zone === 'landing'; v.inJourney = this.state.zone !== 'landing';
     return v;
   }
@@ -438,7 +455,7 @@ export class DesignLogic extends DCLogic {
     var t = I18N[s.lang as Lang].journey;
     var nm = s.first.trim() || I18N[s.lang as Lang].extra.friend;
     var cheer = function (i?: any) { return t.cheers[i % t.cheers.length]; };
-    var W = D ? 1440 : 390, H = D ? 900 : 844;
+    var W = this.frameW(), H = this.frameH();
 
     // ---------- question bank ----------
     var QB: any = { en: I18N.en.extra.quiz, hi: I18N.hi.extra.quiz, mr: I18N.mr.extra.quiz } as Record<string, any[]>;

@@ -45,10 +45,11 @@ export function AboutNavgurukulLandingPages({ v }: { v: V }) {
               </div>
               <button onClick={v.LD.login} style={v.LD.loginStyle}>{v.LD.loginLabel}</button>
             </div>
-            {/* headline block */}
-            <HeadlineBlock v={v} />
-            {/* Asha */}
-            <Asha v={v} />
+            {/* headline block + Asha (one column on phone, see L.p1Stack) */}
+            <div style={v.LD.L.p1Stack}>
+              <HeadlineBlock v={v} />
+              <Asha v={v} />
+            </div>
             {/* CTA */}
             <Cta v={v} />
             {/* bird flies across page 1 */}
