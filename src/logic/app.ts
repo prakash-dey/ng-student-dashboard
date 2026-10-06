@@ -114,6 +114,10 @@ export class AppLogic extends DCLogic {
   backToLanding() {
     this.setState({ zone: 'landing', page: 5, phase: 2, dialog: null, jump: false });
   }
+  /** "Save and exit" from registration: keep every answer, go back to the About pages. */
+  saveAndExit() {
+    this.setState({ zone: 'landing', page: 1, phase: 2, dialog: null, editing: false });
+  }
   /** About page 1: Asha appears, then the button. */
   ldStart() {
     const run = this.state.run;

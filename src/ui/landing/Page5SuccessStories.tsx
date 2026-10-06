@@ -23,7 +23,7 @@ export function Page5SuccessStories({ v }: { v: V }) {
                   <Fragment key={i0}>
                     <div style={v.LD.L.alCard}>
                       <div style="display: flex; align-items: center; gap: 12px">
-                        <img src={al.photo} alt={al.name} style={v.LD.L.alAvatar} />
+                        <img loading="lazy" decoding="async" src={al.photo} alt={al.name} style={v.LD.L.alAvatar} />
                         <div style="display: flex; flex-direction: column; gap: 4px; flex-grow: 1; min-width: 0">
                           <span style={v.LD.L.campName}>{al.name}</span>
                           <span style="display: flex; align-items: center; gap: 7px">
@@ -56,7 +56,7 @@ export function Page5SuccessStories({ v }: { v: V }) {
                   <Fragment key={i0}>
                     <div style={v.LD.L.alCard}>
                       <div style="display: flex; align-items: center; gap: 12px">
-                        <img src={al.photo} alt={al.name} style={v.LD.L.alAvatar} />
+                        <img loading="lazy" decoding="async" src={al.photo} alt={al.name} style={v.LD.L.alAvatar} />
                         <div style="display: flex; flex-direction: column; gap: 4px; flex-grow: 1; min-width: 0">
                           <span style={v.LD.L.campName}>{al.name}</span>
                           <span style="display: flex; align-items: center; gap: 7px">

@@ -21,6 +21,7 @@ node scripts/vals-snapshot.mjs save|check [w h]   # regression net for logic ref
 src/
   main.tsx, app.tsx      entry; picks phone (<900px) or PC layout and feeds the viewport size to the logic
   designTest.ts          dev-only ?designTest=1 hook (window.__setDesignState, today fixed to 2026-10-06)
+  storage/progress.ts    saves progress in IndexedDB (what is kept: logic/persist.ts); skipped in design-test mode
   i18n/                  all copy (en/hi/mr JSON). landing = About pages, journey = the rest, extra = quiz etc.
   logic/                 state + what every screen shows (no DOM)
     app.ts               AppLogic: timers, navigation (go, walkTo, celebrate, ...), renderVals()
@@ -43,6 +44,13 @@ Nothing is scaled. Phone layouts keep the designed sizes and 18px gutters in a c
 and capped at 560px on tablets); bottom buttons are anchored to the bottom; the flexible middle (Asha, lists) takes
 the remaining height and scrolls only when a screen is too short. Minimum frame: 320×600 (phone), 900×640 (PC).
 Check any screen with `scripts/sheet.mjs` — it flags horizontal overflow and controls that end up off-screen.
+
+## Offline, tap targets, budgets
+
+- PWA (vite-plugin-pwa, production builds only): the app, fonts and common artwork are cached on the first visit;
+  photos and the journey map are cached when first shown. The manifest has no icons yet (needs the app icon artwork).
+- Every control is at least 46×46 to the finger: an invisible hit area in `src/styles.css`, so nothing looks different.
+- First-load JS is ~85 KB gzipped (budget 150 KB). Photos in the About lists are lazy-loaded.
 
 ## Changing the logic safely
 

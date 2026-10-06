@@ -31,3 +31,11 @@
 /* App frame (see src/app.tsx): phone below 900px, PC from 900px, never a horizontal scrollbar. */
 html, body { overflow-x: hidden; }
 #app { min-height: 100vh; }
+
+/* Tap targets: every control is at least 46x46 to the finger (CLAUDE.md) without changing how it looks:
+   an invisible hit area centred on the control. :where() keeps specificity at 0, so inline positions win. */
+:where(button, a, [role="tab"]) { position: relative; }
+:where(button, a, [role="tab"])::before {
+  content: ""; position: absolute; left: 50%; top: 50%;
+  width: max(100%, 46px); height: max(100%, 46px); transform: translate(-50%, -50%);
+}

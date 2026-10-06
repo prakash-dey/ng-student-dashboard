@@ -1,5 +1,4 @@
 // Confirmation dialogs: leave registration, leave the test, submit the test, cancel an interview slot.
-import { fresh } from '../state';
 import type { Ctx } from './context';
 
 export function dialogVals(c: Ctx, stepsLeft: number, answered: number) {
@@ -8,7 +7,7 @@ export function dialogVals(c: Ctx, stepsLeft: number, answered: number) {
   const dlg: Record<string, any> = { title: '', body: '', primary: '', secondary: '', primaryOn: null, secondaryOn: null, primaryDisabled: false, hasReasons: false, reasons: [] };
   switch (s.dialog) {
     case 'leave':
-      Object.assign(dlg, { title: t.leaveTitle, body: t.leaveBody1 + stepsLeft + t.leaveBody2, primary: t.stay, primaryOn: close, secondary: t.later, secondaryOn: () => app.setState(fresh()) });
+      Object.assign(dlg, { title: t.leaveTitle, body: t.leaveBody1 + stepsLeft + t.leaveBody2, primary: t.stay, primaryOn: close, secondary: t.later, secondaryOn: () => app.saveAndExit() });
       break;
     case 'leaveTest':
       Object.assign(dlg, { title: t.leaveTestTitle, body: t.leaveTestBody, primary: t.stayTest, primaryOn: close, secondary: t.leaveTest, secondaryOn: () => app.go('map', { answers: {}, qi: 0 }) });

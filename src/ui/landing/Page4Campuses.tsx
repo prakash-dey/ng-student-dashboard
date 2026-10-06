@@ -21,7 +21,7 @@ export function Page4Campuses({ v }: { v: V }) {
               <Fragment key={i0}>
                 <div class="ld-pagefade" style={v.LD.L.campCard}>
                   <div style="position: relative; flex-shrink: 0">
-                    <img src={cp.photo} alt={cp.name} style={v.LD.L.campPhoto} />
+                    <img loading="lazy" decoding="async" src={cp.photo} alt={cp.name} style={v.LD.L.campPhoto} />
                     {" "}
                     <span style={cp.who}>{cp.whoLabel}</span>
                   </div>
