@@ -31,6 +31,8 @@ export function landingLayout(D: boolean, f: Frame, page: number, hasSheet: bool
   const L = D ? landingLayoutDesktop(hide, stamp) : landingLayoutPhone(f, hide, stamp);
   if (D) Object.assign(L, desktopFit(f, hasSheet));
 
+  // course sheet rows: 252px as designed; on short phones they shrink and scroll, keeping "Got it" in view
+  L.sheetRows = 'display:flex;flex-direction:column;gap:8px;min-height:' + (D ? 252 : clamp(f.H - 592, 120, 252)) + 'px' + (D || f.H >= 844 ? '' : ';flex:1 1 auto;overflow-y:auto;scrollbar-width:none');
   L.stampInner = 'flex-grow:1;border-radius:999px;border:1px dashed #86C79B;display:flex;align-items:center;justify-content:center;color:#15803D;' + FONT_MONO + 'font-weight:700;letter-spacing:.04em;line-height:1;font-size:' + (D ? 11 : 10) + 'px';
 
   // page 4: campuses

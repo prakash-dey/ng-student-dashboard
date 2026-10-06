@@ -133,7 +133,7 @@ export function Page3Courses({ v }: { v: V }) {
                       </Fragment>
                     ))}
                   </div>
-                  <div style="display: flex; flex-direction: column; gap: 8px; min-height: 252px">
+                  <div style={v.LD.L.sheetRows}>
                     {(v.LD.sheet.rows || []).map((rw: any, i0: number) => (
                       <Fragment key={i0}>
                         <div class="ld-slide-row" style={rw.style}>
