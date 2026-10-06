@@ -40,10 +40,16 @@ style strings are the design's own inline styles, so a screen matches the design
 
 ## Responsive layout
 
-Nothing is scaled. Phone layouts keep the designed sizes and 18px gutters in a content column (full width, centred
-and capped at 560px on tablets); bottom buttons are anchored to the bottom; the flexible middle (Asha, lists) takes
-the remaining height and scrolls only when a screen is too short. Minimum frame: 320×600 (phone), 900×640 (PC).
-Check any screen with `scripts/sheet.mjs` — it flags horizontal overflow and controls that end up off-screen.
+- **Phone & tablet (<900px), all screens:** designed sizes and 18px gutters in a content column (full width,
+  centred and capped at 560px on tablets); bottom buttons anchored to the bottom; the flexible middle (Asha, map,
+  lists) takes the remaining height. Only artwork shrinks on short screens (`ui/Fit.tsx`, `frame.shrinkBox`),
+  never text; content scrolls only when a screen is too short.
+- **PC journey:** content box up to 1440px, centred; the panel keeps its width, the stage around it flexes.
+- **PC About pages:** composed as one picture, so the page content scales as a whole to fit the screen
+  (0.6×–1.25×), with backgrounds full-bleed.
+- Navbars always have equal space at both ends, aligned with the content. Minimum frame: 320×600 / 900×640.
+
+Check any screen with `scripts/sheet.mjs`: it flags horizontal overflow, controls off-screen and Asha cut off.
 
 ## Offline, tap targets, budgets
 
