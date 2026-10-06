@@ -1,6 +1,7 @@
 // Dev-only test hook (CLAUDE.md "Test hook"): with ?designTest=1, expose window.__setDesignState and fix
 // "today" to 2026-10-06 so dates and countdowns match the reference screenshots. Stripped from production builds.
-import type { DesignLogic } from './logic/design';
+import type { AppLogic } from './logic/app';
+import { fresh } from './logic/state';
 
 const FIXED_NOW = new Date(2026, 9, 6, 10, 0, 0).getTime();
 
@@ -18,13 +19,11 @@ export function freezeClock() {
   globalThis.Date = FixedDate as DateConstructor;
 }
 
-export function installHook(logic: DesignLogic) {
+export function installHook(logic: AppLogic) {
   (window as any).__setDesignState = (state: Record<string, unknown>) => {
-    logic.timers.forEach((t: any) => { clearTimeout(t); clearInterval(t); });
-    logic.timers = [];
-    clearTimeout(logic.idleT);
+    logic.clearTimers();
     // states.json uses "__now" for timestamps taken at the moment of the screenshot
     const patch = JSON.parse(JSON.stringify(state), (_k, val) => (val === '__now' ? Date.now() : val));
-    logic.setState({ ...logic.fresh(), ...patch });
+    logic.setState({ ...fresh(), ...patch });
   };
 }

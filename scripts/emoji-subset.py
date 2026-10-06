@@ -6,7 +6,7 @@
 import glob, re, subprocess, sys
 
 src = sys.argv[1]
-files = glob.glob('src/i18n/*.json') + ['src/logic/design.ts'] + glob.glob('src/ui/**/*.tsx', recursive=True)
+files = glob.glob('src/i18n/*.json') + glob.glob('src/logic/**/*.ts', recursive=True) + glob.glob('src/ui/**/*.tsx', recursive=True)
 text = ''.join(open(f, encoding='utf8').read() for f in files)
 pat = re.compile(r'[\U0001F000-\U0001FAFF☀-➿⬀-⯿](?:️)?(?:‍[\U0001F000-\U0001FAFF☀-➿](?:️)?)*')
 seqs = sorted(set(pat.findall(text)))

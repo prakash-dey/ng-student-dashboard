@@ -2,6 +2,7 @@
 // PAGE 3: COURSES
 import { Fragment } from 'preact';
 import type { V } from '../types';
+import { AshaCorner } from './AshaCorner';
 
 export function Page3Courses({ v }: { v: V }) {
   const isPc = v.D;
@@ -9,60 +10,62 @@ export function Page3Courses({ v }: { v: V }) {
     <>
       {v.LD.isP3 ? (
         <>
-          <div style={v.LD.L.p3head}>
-            <h1 style="margin: 0; display: flex; flex-direction: column">
-              <span class="ld-rise1" style={v.LD.L.p2h1}>{v.LD.t.p3h1}</span>
-              <span class="ld-rise2" style={v.LD.L.p2h2}>{v.LD.t.p3h2}</span>
-            </h1>
-            <div class="ld-rise2" style="display: flex; flex-wrap: wrap; gap: 6px">
-              {(v.LD.commonChips || []).map((cc: any, i0: number) => (
+          {/* phone: one column (see L.p3stack); PC: children are absolutely positioned */}
+          <div style={v.LD.L.p3stack}>
+            <div style={v.LD.L.p3headBox}>
+              <div style={v.LD.L.p3head}>
+                <h1 style="margin: 0; display: flex; flex-direction: column">
+                  <span class="ld-rise1" style={v.LD.L.p2h1}>{v.LD.t.p3h1}</span>
+                  <span class="ld-rise2" style={v.LD.L.p2h2}>{v.LD.t.p3h2}</span>
+                </h1>
+                <div class="ld-rise2" style="display: flex; flex-wrap: wrap; gap: 6px">
+                  {(v.LD.commonChips || []).map((cc: any, i0: number) => (
+                    <Fragment key={i0}>
+                      <span style={v.LD.L.commonChip}>{cc}</span>
+                    </Fragment>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div style={v.LD.L.courseGrid}>
+              {(v.LD.courseCards || []).map((cc: any, i0: number) => (
                 <Fragment key={i0}>
-                  <span style={v.LD.L.commonChip}>{cc}</span>
+                  <button class="ld-pop ld-lift" onClick={cc.open} aria-label={cc.aria} style={cc.style}>
+                    <span style={cc.tile}>
+                      <svg width={cc.iconSize} height={cc.iconSize} viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d={cc.d} />
+                      </svg>
+                    </span>
+                    {" "}
+                    <span style={v.LD.L.courseName}>{cc.name}</span>
+                    {" "}
+                    <span style={cc.codeStyle}>{cc.code}</span>
+                    <span style="display: flex; flex-wrap: wrap; gap: 5px; justify-content: center">
+                      <span style={v.LD.L.miniChip}>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
+                          <circle cx="12" cy="12" r="9" />
+                          <path d="M12 7v5l3 2" />
+                        </svg>
+                        {cc.dur}
+                      </span>
+                      <span style={v.LD.L.miniChip}>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5" />
+                        </svg>
+                        {cc.need}
+                      </span>
+                    </span>
+                    <span style={cc.more}>
+                      {v.LD.t.tapMore}
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6" />
+                      </svg>
+                    </span>
+                  </button>
                 </Fragment>
               ))}
             </div>
-          </div>
-          <div style={v.LD.L.courseGrid}>
-            {(v.LD.courseCards || []).map((cc: any, i0: number) => (
-              <Fragment key={i0}>
-                <button class="ld-pop ld-lift" onClick={cc.open} aria-label={cc.aria} style={cc.style}>
-                  <span style={cc.tile}>
-                    <svg width={cc.iconSize} height={cc.iconSize} viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d={cc.d} />
-                    </svg>
-                  </span>
-                  {" "}
-                  <span style={v.LD.L.courseName}>{cc.name}</span>
-                  {" "}
-                  <span style={cc.codeStyle}>{cc.code}</span>
-                  <span style="display: flex; flex-wrap: wrap; gap: 5px; justify-content: center">
-                    <span style={v.LD.L.miniChip}>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
-                        <circle cx="12" cy="12" r="9" />
-                        <path d="M12 7v5l3 2" />
-                      </svg>
-                      {cc.dur}
-                    </span>
-                    <span style={v.LD.L.miniChip}>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5" />
-                      </svg>
-                      {cc.need}
-                    </span>
-                  </span>
-                  <span style={cc.more}>
-                    {v.LD.t.tapMore}
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M9 6l6 6-6 6" />
-                    </svg>
-                  </span>
-                </button>
-              </Fragment>
-            ))}
-          </div>
-          <div style={v.LD.L.asha3Zone}>
-            <img class="ld-asha-in" src="/media/asha.webp" alt="Asha" style={v.LD.L.asha2} />
-            <div class="ld-bubble-in" style={v.LD.L.bubble2}><span style={v.LD.L.bubble2Text}>{v.LD.t.asha3}</span></div>
+            <AshaCorner v={v} zone="asha3Zone" text={v.LD.t.asha3} />
           </div>
           <div class="ld-pop" style={v.LD.L.cta3Wrap}>
             <button onClick={v.LD.goP2} style={v.LD.L.backBtn}>{v.LD.t.back}</button>

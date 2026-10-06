@@ -57,14 +57,6 @@ export function Hud({ v }: { v: V }) {
                     <button onClick={c.pick} aria-label={c.aria} style={c.style}>{c.label}</button>
                   </Fragment>
                 ))}
-                {v.showLangHint ? (
-                  <>
-                    <div class="nudge" style="position: absolute; top: calc(100% + 10px); left: 50%; margin-left: -80px; width: 160px; box-sizing: border-box; padding: 7px 10px; border-radius: 14px; background: #0F172A; color: #FFFFFF; font-size: 13px; font-weight: 800; text-align: center; line-height: 1.25; box-shadow: 0 8px 20px rgba(15,23,42,.3); pointer-events: none; z-index: 60">
-                      <span style="position: absolute; top: -6px; left: 50%; margin-left: -6px; width: 12px; height: 12px; background: #0F172A; transform: rotate(45deg)" />
-                      <span style="position: relative">Change language · भाषा बदलें · भाषा बदला</span>
-                    </div>
-                  </>
-                ) : null}
               </div>
             </div>
             {v.P ? (

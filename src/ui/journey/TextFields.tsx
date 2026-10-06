@@ -7,7 +7,7 @@ export function TextFields({ v }: { v: V }) {
   const isPc = v.D;
   return (
     <>
-      {v.is.fields ? (
+      {v.hasFields ? (
         <>
           <div class="slide-in" style="display: flex; flex-direction: column; gap: 12px">
             {(v.fields || []).map((f: any, i0: number) => (

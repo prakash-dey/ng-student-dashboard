@@ -2,8 +2,6 @@
 // PANEL
 import { Fragment } from 'preact';
 import type { V } from '../types';
-import { About1Scholarship } from './About1Scholarship';
-import { About2HallOfFame } from './About2HallOfFame';
 import { Call } from './Call';
 import { Campus } from './Campus';
 import { Checklist } from './Checklist';
@@ -13,7 +11,6 @@ import { Dob } from './Dob';
 import { Fail } from './Fail';
 import { Footer } from './Footer';
 import { History } from './History';
-import { Language } from './Language';
 import { Letter } from './Letter';
 import { Login } from './Login';
 import { MapCard } from './MapCard';
@@ -78,8 +75,6 @@ export function Panel({ v }: { v: V }) {
               </>
             ) : null}
             <div class="scroll-y" style="flex-grow: 1; min-height: 0; display: flex; flex-direction: column; gap: 12px; padding: 2px 2px 6px">
-              {/* LANGUAGE */}
-              <Language v={v} />
               {/* LOGIN */}
               <Login v={v} />
               {/* TEXT FIELDS */}
@@ -132,10 +127,6 @@ export function Panel({ v }: { v: V }) {
               <Checklist v={v} />
               {/* WHATSAPP */}
               <Whatsapp v={v} />
-              {/* ABOUT 1: SCHOLARSHIP */}
-              <About1Scholarship v={v} />
-              {/* ABOUT 2: HALL OF FAME */}
-              <About2HallOfFame v={v} />
               {/* TOUR CARD */}
               <TourCard v={v} />
               {/* CALL */}

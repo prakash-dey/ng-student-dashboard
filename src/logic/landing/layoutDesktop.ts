@@ -1,0 +1,52 @@
+// About pages, desktop layout (designed at 1440x900).
+import { FONT_DISPLAY as disp, type Layout } from '../styles';
+
+export function landingLayoutDesktop(hide: string, stamp: string): Layout {
+  const L: Layout = {};
+  L.bg = 'position:absolute;left:0;top:0;width:100%;height:100%;background-position:50% 40%';
+  L.overlay = 'position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(90deg,rgba(255,251,243,.96) 0%,rgba(255,251,243,.88) 34%,rgba(255,251,243,.3) 56%,rgba(255,251,243,.05) 100%)';
+  L.bar = 'position:absolute;left:0;top:0;width:1440px;box-sizing:border-box;padding:22px 40px;display:flex;align-items:center;gap:12px;z-index:20';
+  L.logo = 'height:38px;width:auto';
+  L.head = 'position:absolute;left:90px;top:180px;width:700px;display:flex;flex-direction:column;gap:22px;z-index:10;' + hide;
+  L.stamp = stamp;
+  L.h1 = disp + 'font-size:54px;line-height:1.08;color:#0F172A';
+  L.h2 = disp + 'font-size:54px;line-height:1.08;color:#E91E63';
+  L.ashaZone = 'position:absolute;left:760px;top:120px;width:680px;height:780px;z-index:10;' + hide;
+  L.walker = 'position:absolute;left:130px;top:230px;width:290px;height:550px';
+  L.asha = 'position:absolute;left:-40px;top:230px;width:660px;height:auto';
+  L.disc = 'position:absolute;left:90px;top:735px;width:400px;height:50px;border-radius:50%;background:radial-gradient(ellipse,rgba(236,72,153,.5),rgba(236,72,153,0) 70%)';
+  L.bubble = 'position:absolute;left:365px;top:110px;width:300px;box-sizing:border-box;padding:22px 26px;border-radius:32px 32px 32px 8px;background:rgba(255,255,255,.95);border:1.5px solid #FFFFFF;box-shadow:0 14px 40px rgba(190,24,93,.2)';
+  L.bubbleText = disp + 'font-size:30px;line-height:1.18;color:#0F172A';
+  L.tw = 'position:absolute;left:40px;top:300px;transform:scale(1.6)';
+  L.ctaPos = 'position:absolute;left:84px;top:484px;width:330px';
+  L.p1Stack = 'position:absolute;left:0;top:0;width:100%;height:100%;z-index:10;pointer-events:none';
+  L.ashaFitH = 0; L.bubbleBox = '';
+  L.cta = "width:100%;height:76px;border:none;border-radius:999px;color:#FFFFFF;" + disp + 'font-size:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px';
+  L.birdPos = 'position:absolute;left:0;top:120px;z-index:9';
+  L.p2head = 'position:absolute;left:90px;top:150px;width:600px;display:flex;flex-direction:column;align-items:flex-start;gap:20px;z-index:10';
+  L.fee = 'width:124px;height:124px;flex-shrink:0;border-radius:999px;border:5px dashed #E91E63;background:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(233,30,99,.2)';
+  L.feeSmall = "font-family:'JetBrains Mono','Noto Sans Devanagari',monospace;font-weight:700;letter-spacing:.14em;color:#BE185D;font-size:14px"; L.feeBig = disp + 'line-height:1;color:#E91E63;font-size:50px';
+  L.p2h1 = disp + 'font-size:52px;line-height:1.08;color:#0F172A';
+  L.p2h2 = disp + 'font-size:52px;line-height:1.08;color:#E91E63';
+  L.cards = 'position:absolute;left:760px;top:150px;width:590px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;z-index:10';
+  L.icon = 'font-size:64px;line-height:1.15'; L.thali = 'width:76px;height:76px';
+  L.cardLabel = disp + 'font-size:24px;line-height:1.1;color:#0F172A;text-align:center';
+  L.asha2Zone = 'position:absolute;left:60px;top:560px;width:640px;height:340px;z-index:10';
+  L.asha2 = 'position:absolute;left:0;top:0;width:400px;height:auto';
+  L.bubble2 = 'position:absolute;left:330px;top:70px;width:300px;box-sizing:border-box;padding:18px 22px;border-radius:28px 28px 28px 8px;background:rgba(255,255,255,.95);border:1.5px solid #FFFFFF;box-shadow:0 12px 34px rgba(190,24,93,.18)';
+  L.bubble2Text = disp + 'font-size:25px;line-height:1.2;color:#0F172A';
+  L.cta2Wrap = 'position:absolute;left:760px;top:690px;width:590px;display:flex;gap:14px;z-index:12;animation-delay:1.4s';
+  L.p3head = 'position:absolute;left:90px;top:170px;width:600px;display:flex;flex-direction:column;gap:18px;z-index:10';
+  L.commonChip = 'font-size:16px;font-weight:800;padding:5px 14px;border-radius:999px;background:#FFFFFF;border:1.5px solid #FBCFE8;color:#9D174D';
+  L.courseGrid = 'position:absolute;left:760px;top:120px;width:590px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;z-index:10';
+  L.courseName = disp + 'font-size:26px;line-height:1.1;color:#0F172A;text-align:center';
+  L.miniChip = 'display:flex;align-items:center;gap:4px;font-size:13px;font-weight:800;padding:3px 9px;border-radius:999px;background:#F1F5F9;color:#334155;white-space:nowrap';
+  L.asha3Zone = 'position:absolute;left:60px;top:560px;width:640px;height:340px;z-index:10';
+  L.cta3Wrap = 'position:absolute;left:760px;top:720px;width:590px;display:flex;gap:14px;z-index:12;animation-delay:.9s';
+  L.scrim = 'position:absolute;left:0;top:0;width:100%;height:100%;z-index:40;background:rgba(15,23,42,.55);display:flex;align-items:center;justify-content:center';
+  L.sheet = 'width:560px;box-sizing:border-box;background:#FFFFFF;border-radius:30px;padding:26px 26px 24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 70px rgba(15,23,42,.4)';
+  L.factChip = 'display:flex;align-items:center;gap:5px;font-size:14px;font-weight:800;padding:5px 12px;border-radius:999px;background:#FFF7ED;border:1.5px solid #FED7AA;color:#9A3412';
+  L.backBtn = "height:76px;padding:0 30px;border-radius:999px;border:2px solid #E2E8F0;background:#FFFFFF;color:#334155;" + disp + 'font-size:22px;cursor:pointer';
+  L.cta2 = "flex-grow:1;height:76px;border:none;border-radius:999px;color:#FFFFFF;" + disp + 'font-size:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px';
+  return L;
+}

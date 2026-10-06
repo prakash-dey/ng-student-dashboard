@@ -1,0 +1,50 @@
+# NavGurukul admission — student app
+
+The student-facing admission journey: About pages, registration, aptitude test, two interview rounds, offer and joining.
+Phone first (cheap Android, slow networks), English / Hindi / Marathi. The approved design lives in `design-handoff/`
+(read-only; see `CLAUDE.md` for the rules).
+
+## Commands
+
+```bash
+npm i
+npm run dev                         # http://localhost:5173  (add ?designTest=1 for the test hook)
+npm run typecheck
+node scripts/vt.mjs [filter]        # pixel test vs design-handoff/reference, in Playwright's Linux image (needs Docker + dev server)
+node scripts/sheet.mjs <state> [phone|pc]   # contact sheet of one design state across device sizes + layout checks -> .sheets/
+node scripts/vals-snapshot.mjs save|check [w h]   # regression net for logic refactors (see below)
+```
+
+## How it fits together
+
+```
+src/
+  main.tsx, app.tsx      entry; picks phone (<900px) or PC layout and feeds the viewport size to the logic
+  designTest.ts          dev-only ?designTest=1 hook (window.__setDesignState, today fixed to 2026-10-06)
+  i18n/                  all copy (en/hi/mr JSON). landing = About pages, journey = the rest, extra = quiz etc.
+  logic/                 state + what every screen shows (no DOM)
+    app.ts               AppLogic: timers, navigation (go, walkTo, celebrate, ...), renderVals()
+    state.ts             AppState + fresh() — keys match the design so reference/states.json works
+    frame.ts             responsive frame: viewport -> frame size, phone content column
+    flow.ts              registration order (regFor), progress along the six milestones
+    landing/             About pages: layout (phone/desktop) and content
+    journey/             one module per area: hud, layout, registration/*, test, rounds, offer, joining, map, steps, dialogs
+    data/                static data: states & districts, campuses, sample alumni
+  ui/                    Preact components that render the values (one per screen/section)
+    Fit.tsx              scales artwork down when a screen is too short (never text)
+```
+
+The logic returns plain values (copy, style strings, flags, click handlers) and the components render them; the
+style strings are the design's own inline styles, so a screen matches the design exactly at 390×844 and 1440×900.
+
+## Responsive layout
+
+Nothing is scaled. Phone layouts keep the designed sizes and 18px gutters in a content column (full width, centred
+and capped at 560px on tablets); bottom buttons are anchored to the bottom; the flexible middle (Asha, lists) takes
+the remaining height and scrolls only when a screen is too short. Minimum frame: 320×600 (phone), 900×640 (PC).
+Check any screen with `scripts/sheet.mjs` — it flags horizontal overflow and controls that end up off-screen.
+
+## Changing the logic safely
+
+`scripts/vals-snapshot.mjs save` records everything `renderVals()` returns for all 98 design states on both devices;
+after a refactor, `check` must say `identical`. Then run the pixel test.

@@ -7,7 +7,7 @@ export function ChoiceGrid({ v }: { v: V }) {
   const isPc = v.D;
   return (
     <>
-      {v.is.choice ? (
+      {v.hasChoices ? (
         <>
           <div class="slide-in" style={v.choiceGrid}>
             {(v.choices || []).map((o: any, i0: number) => (

@@ -2,7 +2,8 @@
 // Renders each matching state from the design's reference/states.json at a range of device sizes, saves one
 // labelled image per state and device class, and prints layout problems found at each size:
 //   overflow-x   the page scrolls sideways
-//   offscreen    a button/input/link sits (partly) outside the visible frame and is not inside a scroll area
+//   offscreen       a button/input/link sits (partly) outside the visible frame and is not inside a scroll area
+//   asha-offscreen  the visible part of an Asha image is cut off by the screen edge or a clipping container
 // Needs the dev server (npm run dev).
 import { chromium } from '@playwright/test';
 import fs from 'node:fs';
@@ -34,6 +35,30 @@ async function shoot(state, w, h) {
     const root = document.querySelector('#app > div');
     const R = root.getBoundingClientRect();
     const scrolls = (el) => { for (let p = el.parentElement; p && p !== root; p = p.parentElement) { const o = getComputedStyle(p); if (/(auto|scroll)/.test(o.overflowY + o.overflowX)) return true; } return false; };
+    // Asha must be fully visible: measure the opaque part of each Asha image (its alpha bounding box)
+    const alphaBox = (img) => {
+      const c = document.createElement('canvas');
+      c.width = img.naturalWidth; c.height = img.naturalHeight;
+      const g = c.getContext('2d'); g.drawImage(img, 0, 0);
+      const d = g.getImageData(0, 0, c.width, c.height).data;
+      let x0 = c.width, y0 = c.height, x1 = 0, y1 = 0;
+      for (let y = 0; y < c.height; y += 2) for (let x = 0; x < c.width; x += 2) if (d[(y * c.width + x) * 4 + 3] > 40) { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }
+      return { x0: x0 / c.width, x1: x1 / c.width, y0: y0 / c.height, y1: y1 / c.height };
+    };
+    for (const img of root.querySelectorAll('img[src*="asha"]')) {
+      if (!img.complete || !img.naturalWidth) continue;
+      let hidden = false; for (let p = img; p && p !== root; p = p.parentElement) { if (+getComputedStyle(p).opacity === 0) { hidden = true; break; } }
+      if (hidden || scrolls(img)) continue;
+      const r = img.getBoundingClientRect(), a = alphaBox(img);
+      const vis = { l: r.left + a.x0 * r.width, r: r.left + a.x1 * r.width, t: r.top + a.y0 * r.height, b: r.top + a.y1 * r.height };
+      // clipped by an overflow:hidden ancestor counts as off-screen too
+      let clip = { l: R.left, r: R.right, t: R.top, b: R.bottom };
+      for (let p = img.parentElement; p && p !== root; p = p.parentElement) {
+        if (getComputedStyle(p).overflow !== 'visible') { const q = p.getBoundingClientRect(); clip = { l: Math.max(clip.l, q.left), r: Math.min(clip.r, q.right), t: Math.max(clip.t, q.top), b: Math.min(clip.b, q.bottom) }; }
+      }
+      const over = Math.max(clip.l - vis.l, vis.r - clip.r, clip.t - vis.t, vis.b - clip.b);
+      if (over > 2) out.push(`asha-offscreen ${Math.round(over)}px [${Math.round(vis.l)},${Math.round(vis.t)} → ${Math.round(vis.r)},${Math.round(vis.b)}]`);
+    }
     for (const el of root.querySelectorAll('button, input, select, a')) {
       const r = el.getBoundingClientRect();
       if (!r.width || !r.height) continue;

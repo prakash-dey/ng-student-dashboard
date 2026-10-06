@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'preact/hooks';
-import { DesignLogic } from './logic/design';
+import { AppLogic } from './logic/app';
 import type { Device } from './logic/dc';
 import { Design } from './ui/Design';
 import { designTestOn, freezeClock, installHook } from './designTest';
 
 // Phone layout below 900px, PC layout from 900px. Within each, the layout reflows to the viewport
-// (see DesignLogic.frameW/frameH); nothing is scaled.
+// (see logic/frame.ts); nothing is scaled.
 const PC_QUERY = '(min-width: 900px)';
 const deviceNow = (): Device => (matchMedia(PC_QUERY).matches ? 'desktop' : 'phone');
 // clientWidth/innerHeight: the visible area without a vertical scrollbar
 const viewNow = () => [document.documentElement.clientWidth, window.innerHeight] as const;
 
 if (designTestOn) freezeClock();
-const logic = new DesignLogic(deviceNow());
+const logic = new AppLogic(deviceNow());
 logic.setView(...viewNow());
 if (designTestOn) installHook(logic);
 

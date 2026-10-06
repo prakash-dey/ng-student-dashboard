@@ -23,18 +23,6 @@ export function StudentJourney({ v }: { v: V }) {
           <World v={v} />
           {/* HUD */}
           <Hud v={v} />
-          {/* logo when no HUD */}
-          {v.on.bareLogo ? (
-            <>
-              <div style={v.L.bareLogo}>
-                <img src="/media/logo.webp" alt="NavGurukul" style={v.L.bareLogoImg} />
-                <div class="pop" style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,.9); border: 1.5px solid #F9A8D4; border-radius: 999px; padding: 6px 14px; box-shadow: 0 4px 14px rgba(233,30,99,.18)">
-                  <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21C3 11 9 4 21 3c-1 12-8 18-18 18z" fill="#059669" /></svg>
-                  <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 11px; letter-spacing: .18em; color: #BE185D">{v.t.freeTag}</span>
-                </div>
-              </div>
-            </>
-          ) : null}
           {/* STAGE: ASHA */}
           <StageAsha v={v} />
           {/* STAGE: MAP */}
