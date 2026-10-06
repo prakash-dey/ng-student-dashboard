@@ -4,5 +4,6 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   plugins: [preact(), tailwindcss()],
-  server: { port: 5173, strictPort: true },
+  // host.docker.internal: the visual tests run in Playwright's Linux image (see scripts/vt.mjs)
+  server: { port: 5173, strictPort: true, allowedHosts: ['host.docker.internal'] },
 });

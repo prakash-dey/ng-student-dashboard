@@ -4,7 +4,6 @@ import { Fragment } from 'preact';
 import type { V } from '../types';
 import { Celebration } from './Celebration';
 import { Countdown } from './Countdown';
-import { DemoJump } from './DemoJump';
 import { Dialog } from './Dialog';
 import { Hud } from './Hud';
 import { MicroWin } from './MicroWin';
@@ -76,8 +75,6 @@ export function StudentJourney({ v }: { v: V }) {
           <Dialog v={v} />
           {/* NEED HELP */}
           <NeedHelp v={v} />
-          {/* DEMO JUMP */}
-          <DemoJump v={v} />
         </>
       ) : null}
     </>

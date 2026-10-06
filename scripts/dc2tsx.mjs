@@ -6,6 +6,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const OUT = 'src/ui';
+// Sections removed on purpose (CLAUDE.md): never generate them.
+const SKIP = /DEMO JUMP/;
 const VOID = new Set(['img', 'input', 'br', 'hr', 'meta', 'link', 'source']);
 const ENT = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00a0' };
 const decode = (s) => s.replace(/&(#x[0-9a-f]+|#\d+|\w+);/gi, (m, e) =>
@@ -157,6 +159,7 @@ function emitChildren(children, ctx, ind) {
   segs.push(cur);
   const flat = children.filter((c) => c.type !== 'comment');
   segs.forEach((seg) => {
+    if (seg.comment && SKIP.test(seg.comment)) return;
     const lines = [];
     seg.nodes.forEach((c) => {
       if (isWs(c)) {

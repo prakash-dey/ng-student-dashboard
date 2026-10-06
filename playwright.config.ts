@@ -8,5 +8,5 @@ export default defineConfig({
   fullyParallel: true,
   reporter: [['html', { open: 'never' }], ['list']],
   projects: [{ name: 'chromium', use: { browserName: 'chromium' } }],
-  webServer: { command: 'npm run dev', url: 'http://localhost:5173', reuseExistingServer: true },
+  webServer: { command: 'npm run dev', url: process.env.BASE_URL ?? 'http://localhost:5173', reuseExistingServer: true },
 });
