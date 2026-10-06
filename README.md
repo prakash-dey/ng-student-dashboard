@@ -2,7 +2,8 @@
 
 The student-facing admission journey: About pages, registration, aptitude test, two interview rounds, offer and joining.
 Phone first (cheap Android, slow networks), English / Hindi / Marathi. The approved design lives in `design-handoff/`
-(read-only; see `CLAUDE.md` for the rules).
+(local only, not in the repo). The app builds without it: the design's tokens, classes, fonts and artwork are copied
+into `src/styles/`, `src/assets/fonts/` and `public/media/`.
 
 ## Commands
 
