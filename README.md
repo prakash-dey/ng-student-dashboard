@@ -10,6 +10,7 @@ Phone first (cheap Android, slow networks), English / Hindi / Marathi. The appro
 npm i
 npm run dev                         # http://localhost:5173  (add ?designTest=1 for the test hook)
 npm run typecheck
+# local tooling (scripts/ and design-handoff/ are not in the repo):
 node scripts/vt.mjs [filter]        # pixel test vs design-handoff/reference, in Playwright's Linux image (needs Docker + dev server)
 node scripts/sheet.mjs <state> [phone|pc]   # contact sheet of one design state across device sizes + layout checks -> .sheets/
 node scripts/vals-snapshot.mjs save|check [w h]   # regression net for logic refactors (see below)
