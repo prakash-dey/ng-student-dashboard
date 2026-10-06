@@ -1,0 +1,39 @@
+/* Theme values pulled from the final design. Use these, never invent new ones. */
+@import "./fonts.css";
+:root{
+  /* brand */
+  --pink-50:#FDF2F8; --pink-100:#FCE7F3; --pink-200:#FBCFE8; --pink-300:#F9A8D4; --pink-400:#F472B6;
+  --pink-500:#EC4899; --pink:#E91E63; --pink-600:#DB2777; --pink-700:#BE185D; --pink-800:#9D174D;
+  /* accents */
+  --gold-100:#FEF3C7; --gold-200:#FDE68A; --gold-400:#FBBF24; --gold:#F59E0B; --gold-600:#D97706; --gold-700:#B45309;
+  --green-50:#F0FDF4; --green-100:#DCFCE7; --green-400:#34D399; --green:#10B981; --green-600:#059669; --green-700:#047857; --green-800:#166534;
+  --sky-100:#E0F2FE; --sky:#0EA5E9; --sky-600:#0284C7; --sky-700:#0369A1;
+  --violet-100:#EDE9FE; --violet:#8B5CF6; --violet-600:#7C3AED; --violet-700:#6D28D9;
+  --red-700:#B91C1C; --red-800:#991B1B; --orange-50:#FFF7ED; --orange-800:#9A3412;
+  /* neutrals */
+  --ink:#0F172A; --ink-700:#334155; --ink-600:#475569; --ink-500:#64748B; --ink-400:#94A3B8;
+  --line-300:#CBD5E1; --line:#E2E8F0; --surface-100:#F1F5F9; --surface-50:#F8FAFC; --white:#FFFFFF;
+  --page:#FFFBF3;          /* app background (cream) */
+  --focus:#0284C7;         /* 3px focus ring, 3px offset */
+  /* type */
+  --font-display:'Baloo 2','Noto Sans Devanagari',sans-serif;   /* headings, buttons, numbers */
+  --font-body:'Plus Jakarta Sans','Noto Sans Devanagari',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;                        /* timers, codes */
+  --text-base:17px; --leading:1.4;
+  /* shape */
+  --r-pill:999px; --r-sm:12px; --r-md:14px; --r-lg:16px; --r-xl:18px; --r-2xl:20px; --r-3xl:22px; --r-4xl:24px; --r-panel:26px;
+  --bubble-radius:22px 22px 22px 6px;
+  /* depth: "chunky" buttons use a solid bottom edge, not a blur */
+  --shadow-primary:0 6px 0 var(--pink-800),0 12px 28px rgba(233,30,99,.42);
+  --shadow-primary-pressed:0 1px 0 var(--pink-800),0 4px 12px rgba(233,30,99,.4);
+  --shadow-card:0 4px 0 var(--line);
+  --shadow-card-pink:0 4px 0 var(--pink-200);
+  --shadow-float:0 6px 16px rgba(0,0,0,.25);
+  --shadow-dialog:0 20px 40px rgba(0,0,0,.3);
+  --grad-primary:linear-gradient(135deg,#EC4899 0%,#E91E63 45%,#BE185D 100%);
+  /* motion (exact curves from the design) */
+  --ease-pop:cubic-bezier(.2,1.6,.4,1); --ease-rise:cubic-bezier(.2,1.4,.4,1); --ease-slide:cubic-bezier(.2,1.2,.4,1);
+  --t-pop:.45s; --t-rise:.55s; --t-slide:.45s; --t-press:.08s;
+  /* layout */
+  --phone-w:390px; --phone-h:844px; --pc-w:1440px; --pc-h:900px; --tap-min:46px;
+}

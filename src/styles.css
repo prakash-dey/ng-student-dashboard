@@ -1,7 +1,7 @@
 /* Order matters: tokens (+ self-hosted fonts), then the design's verbatim classes, then Tailwind utilities.
    No Tailwind preflight: the design was drawn on browser defaults. */
-@import "../design-handoff/tokens.css";
-@import "../design-handoff/design/design.css";
+@import "./styles/tokens.css";
+@import "./styles/design.css";
 @import "./assets/emoji/emoji.css";
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);

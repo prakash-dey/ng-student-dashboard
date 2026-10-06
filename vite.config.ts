@@ -26,7 +26,7 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html}', 'assets/*.woff2', 'media/{logo,asha,asha-idle,asha-walk,bird,banyan,thali}.webp'],
         // latin-ext subsets are rarely needed: fetched and cached on demand like the photos
-        globIgnores: ['**/*latin-ext*', 'media/fonts/**'],
+        globIgnores: ['**/*latin-ext*'],
         navigateFallback: '/index.html',
         runtimeCaching: [
           {
