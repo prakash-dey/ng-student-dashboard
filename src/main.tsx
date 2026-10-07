@@ -1,11 +1,9 @@
 import 'preact/compat';
 import { render } from 'preact';
 import './styles.css';
-import { App, resume } from './app';
-import { loadProgress } from './storage/progress';
+import { App } from './app';
 
-// Saved progress first (IndexedDB is quick; gives up after 500ms), then the first render.
-loadProgress().then((saved) => {
-  resume(saved);
-  render(<App />, document.getElementById('app')!);
-});
+// Progress is no longer saved on the device: remove what earlier versions stored.
+try { indexedDB.deleteDatabase('navgurukul-admission'); } catch { /* storage unavailable */ }
+
+render(<App />, document.getElementById('app')!);

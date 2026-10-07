@@ -3,9 +3,6 @@ import { AppLogic } from './logic/app';
 import type { Device } from './logic/dc';
 import { Design } from './ui/Design';
 import { designTestOn, freezeClock, installHook } from './designTest';
-import { fromSaved, toSaved } from './logic/persist';
-import type { AppState } from './logic/state';
-import { saveProgress } from './storage/progress';
 
 // Phone layout below 900px, PC layout from 900px. Within each, the layout reflows to the viewport
 // (see logic/frame.ts); nothing is scaled.
@@ -19,19 +16,11 @@ const logic = new AppLogic(deviceNow());
 logic.setView(...viewNow());
 if (designTestOn) installHook(logic);
 
-/** Resume saved progress (never in design-test mode, which always starts from fresh()). */
-export function resume(saved: Partial<AppState> | null) {
-  if (saved && !designTestOn) logic.state = fromSaved(saved);
-}
-
 export function App() {
   const [, setTick] = useState(0);
   const rerender = () => setTick((n) => n + 1);
   useEffect(() => {
-    logic.onChange = () => {
-      rerender();
-      if (!designTestOn) saveProgress(toSaved(logic.state));
-    };
+    logic.onChange = rerender;
     logic.componentDidMount?.();
     let raf = 0;
     const onResize = () => {

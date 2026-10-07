@@ -23,7 +23,6 @@ node scripts/vals-snapshot.mjs save|check [w h]   # regression net for logic ref
 src/
   main.tsx, app.tsx      entry; picks phone (<900px) or PC layout and feeds the viewport size to the logic
   designTest.ts          dev-only ?designTest=1 hook (window.__setDesignState, today fixed to 2026-10-06)
-  storage/progress.ts    saves progress in IndexedDB (what is kept: logic/persist.ts); skipped in design-test mode
   i18n/                  all copy (en/hi/mr JSON). landing = About pages, journey = the rest, extra = quiz etc.
   logic/                 state + what every screen shows (no DOM)
     app.ts               AppLogic: timers, navigation (go, walkTo, celebrate, ...), renderVals()
