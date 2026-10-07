@@ -35,7 +35,7 @@ export interface AppState {
   xp: number; xpPulse: number; toast: string | null; toastXp: number; toastEmo: string; toastCol: number;
   mini: string | null; miniKey: number; section: string | null; dialog: Dialog | null; jump: boolean;
   lineKey: number; typing: boolean; idle: boolean; voice: boolean;
-  /** show the "Tap here!" pill: true after 30s without any input */
+  /** show the "Tap here!" pill: true after 5s without any input */
   nudge: boolean;
   // test
   answers: Record<number, number>; qi: number; testStart: number; now: number; testLang: Lang | null; score: number;

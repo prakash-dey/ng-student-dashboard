@@ -96,7 +96,7 @@ export function journeyVals(app: AppLogic) {
     // feedback overlays
     hasToast: !!s.toast, toastText: s.toast, toastUi: toastUi(c),
     hasMini: !!s.mini, miniText: s.mini, hasSection: !!s.section, sectionText: s.section, hasDialog: !!s.dialog,
-    // the "Tap here!" pill shows above the main button when it is enabled and the student has been inactive for 30s
+    // the "Tap here!" pill shows above the main button when it is enabled and the student has been inactive for 5s
     idleNudge: s.nudge && cfg.hasPrimary && !cfg.primaryDisabled && !s.toast && !s.dialog,
     // Asha: typing dots right after a screen change, then the line (alternating keys restart the animation)
     typing: s.typing, notTyping: !s.typing, parA: s.lineKey % 2 === 0, parB: s.lineKey % 2 === 1,

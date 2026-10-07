@@ -43,7 +43,7 @@ export function App() {
       });
     };
     addEventListener('resize', onResize);
-    // any real input counts as activity: restarts the inactivity timers ("Tap here!" pill after 30s)
+    // any real input counts as activity: restarts the inactivity timers ("Tap here!" pill after 5s)
     let lastInput = 0;
     const onInput = () => {
       const now = performance.now();
