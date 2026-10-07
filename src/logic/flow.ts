@@ -7,7 +7,7 @@ const REG_ORDER: Screen[] = ['login', 'phone', 'name', 'dob', 'gender', 'pincode
 export const regFor = (qual: AppState['qual'] | string | null): Screen[] =>
   REG_ORDER.filter((x) => (x !== 'year' && x !== 'attend') || qual === 'college');
 
-export const TEST_SCREENS: Screen[] = ['ready', 'countdown', 'test', 'submitting', 'fail'];
+export const TEST_SCREENS: Screen[] = ['testLang', 'ready', 'countdown', 'test', 'submitting', 'fail'];
 export const ROUND_SCREENS: Screen[] = ['intro', 'slot', 'confirm', 'booked', 'call', 'pending'];
 const ROUND_STEP: Record<string, number> = { intro: 0.1, slot: 0.3, confirm: 0.5, booked: 0.6, call: 0.72, pending: 0.85 };
 const CEL_PROGRESS: Record<string, number> = { reg: 1, test: 2, lr: 3, cfr: 4, sel: 4.5, campus: 5 };

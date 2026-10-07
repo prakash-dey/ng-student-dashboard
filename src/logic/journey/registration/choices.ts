@@ -20,7 +20,8 @@ export const SELECTED = 'border:3px solid #F472B6;background:#FDF2F8;box-shadow:
 
 /** [value, label, kind, icon path / glyph / hair path] */
 type Item = [string, string, 'avatar' | 'icon' | 'glyph', string];
-interface ChoiceSet { key: keyof AppState; items: Item[]; cols?: number; small?: boolean }
+/** `select`: tapping only selects (no step-complete toast / auto-advance); the footer button moves on. */
+interface ChoiceSet { key: keyof AppState; items: Item[]; cols?: number; small?: boolean; select?: boolean }
 
 function choiceSets(c: Ctx): Partial<Record<string, ChoiceSet>> {
   const { t } = c;
@@ -28,6 +29,8 @@ function choiceSets(c: Ctx): Partial<Record<string, ChoiceSet>> {
     gender: { key: 'gender', items: [['boy', t.boy, 'avatar', HAIR_BOY], ['girl', t.girl, 'avatar', HAIR_GIRL], ['other', t.other, 'avatar', HAIR_BOY]] },
     qual: { key: 'qual', items: [['12', t.q12, 'glyph', '12'], ['college', t.qCollege, 'icon', ICON.book], ['grad', t.qGrad, 'icon', ICON.cap], ['diploma', t.qDiploma, 'icon', ICON.diploma]] },
     year: { key: 'year', items: [['1', t.yearOpts[0], 'glyph', '1'], ['2', t.yearOpts[1], 'glyph', '2'], ['3', t.yearOpts[2], 'glyph', '3'], ['4', t.yearOpts[3], 'glyph', '4'], ['final', t.yearOpts[4], 'icon', ICON.flag]] },
+    // before the screening test (not a registration step): the language the questions come in
+    testLang: { key: 'testLang', select: true, items: [['en', 'English', 'glyph', 'Aa'], ['hi', 'हिंदी', 'glyph', 'अ'], ['mr', 'मराठी', 'glyph', 'म']] },
     attend: { key: 'attend', cols: 1, small: true, items: [['regular', t.attends[0], 'icon', ICON.college], ['exams', t.attends[1], 'icon', ICON.exams]] },
   };
 }
@@ -45,6 +48,7 @@ export function choicesVals(c: Ctx, advance: Advance) {
       style: 'position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px 6px 14px;border-radius:24px;cursor:pointer;min-height:' + (cs.items.length === 3 ? 150 : D ? 150 : 132) + 'px;' + (sel ? SELECTED : ''),
       pick: () => {
         if (s.toast) return;
+        if (cs.select) { c.act({ [cs.key]: value }); return; }
         c.set({ [cs.key]: value });
         advance(sc, value);
       },

@@ -100,12 +100,14 @@ export function Page5SuccessStories({ v }: { v: V }) {
           </div>
           <div class="ld-pop" style={v.LD.L.c4cta}>
             <button onClick={v.LD.goP4} style={v.LD.L.backBtn}>{v.LD.t.back}</button>
-            <div class="nudge" style="position: absolute; right: 18px; bottom: 86px; display: flex; align-items: center; gap: 6px; background: #0F172A; color: #FFFFFF; font-weight: 800; font-size: var(--fs-body-s); padding: 7px 12px; border-radius: 999px; box-shadow: 0 6px 16px rgba(0,0,0,.25); z-index: 5; pointer-events: none">
-              {v.t.tapHere}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 5v14M6 13l6 6 6-6" />
-              </svg>
-            </div>
+            {v.LD.showNudge ? (
+              <div class="nudge" style="position: absolute; right: 18px; bottom: 86px; display: flex; align-items: center; gap: 6px; background: #0F172A; color: #FFFFFF; font-weight: 800; font-size: var(--fs-body-s); padding: 7px 12px; border-radius: 999px; box-shadow: 0 6px 16px rgba(0,0,0,.25); z-index: 5; pointer-events: none">
+                {v.t.tapHere}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 5v14M6 13l6 6 6-6" />
+                </svg>
+              </div>
+            ) : null}
             <button class="ld-glow-btn" onClick={v.LD.replay} style={v.LD.L.cta2}>
               {v.LD.t.next}{" "}
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

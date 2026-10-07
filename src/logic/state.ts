@@ -6,7 +6,7 @@ export type Screen =
   // registration, in regFor() order
   | 'login' | 'phone' | 'name' | 'dob' | 'gender' | 'pincode' | 'category' | 'qual' | 'sname' | 'year' | 'attend' | 'photo' | 'school' | 'campus' | 'review'
   // aptitude test
-  | 'ready' | 'countdown' | 'test' | 'submitting' | 'fail'
+  | 'testLang' | 'ready' | 'countdown' | 'test' | 'submitting' | 'fail'
   // interview rounds (state.round says which)
   | 'intro' | 'slot' | 'confirm' | 'booked' | 'call' | 'pending'
   // offer and joining
@@ -35,6 +35,8 @@ export interface AppState {
   xp: number; xpPulse: number; toast: string | null; toastXp: number; toastEmo: string; toastCol: number;
   mini: string | null; miniKey: number; section: string | null; dialog: Dialog | null; jump: boolean;
   lineKey: number; typing: boolean; idle: boolean; voice: boolean;
+  /** show the "Tap here!" pill: true after 30s without any input */
+  nudge: boolean;
   // test
   answers: Record<number, number>; qi: number; testStart: number; now: number; testLang: Lang | null; score: number;
   failAt: number; testAt: number; count: number;
@@ -57,7 +59,7 @@ export function fresh(): AppState {
     xp: 50, xpPulse: 0, toast: null, toastXp: 10, mini: null, miniKey: 0, section: null, dialog: null, jump: false,
     answers: {}, qi: 0, testStart: 0, now: Date.now(), testLang: null, score: 0, failAt: 0,
     round: 'lr', dayIdx: 0, time: null, reason: null, bookedLr: null, bookedCfr: null,
-    checks: [false, false, false, false], cel: null, xpGain: 0, lvl: 1, walkT: 1, walking: false, count: 3, idle: false,
+    checks: [false, false, false, false], cel: null, xpGain: 0, lvl: 1, walkT: 1, walking: false, count: 3, idle: false, nudge: false,
     tourStop: 0, lineKey: 0, typing: false, voice: false, openSchool: null, toastEmo: '🎉', toastCol: 0,
     callStart: 0, micOff: false, camOff: false, consent: false, travelMode: null, travelDay: null, testAt: 0,
     passed: { test: false, lr: false, cfr: false }, offerAccepted: false, joined: false, alum: 0,

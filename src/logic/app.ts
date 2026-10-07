@@ -11,6 +11,7 @@ import { questions } from './journey/test';
 
 const TYPING_MS = 520;      // Asha's typing dots after a screen change
 const IDLE_MS = 15000;      // Asha wiggles to get attention after this long without input
+const NUDGE_MS = 30000;     // the "Tap here!" pill shows after this long without input
 const TOAST_MS = 1500;      // step-complete toast, then move on
 const MINI_MS = 1250;       // small "Saved" pill
 const SECTION_MS = 2300;    // section-complete banner
@@ -31,6 +32,7 @@ export class AppLogic extends DCLogic {
   _focusKey: string | null = null;
   private tick?: ReturnType<typeof setInterval>;
   private idleT?: ReturnType<typeof setTimeout>;
+  private nudgeT?: ReturnType<typeof setTimeout>;
 
   constructor(device: Device) {
     super();
@@ -62,12 +64,16 @@ export class AppLogic extends DCLogic {
     this.timers.forEach((t) => { clearTimeout(t); clearInterval(t); });
     this.timers = [];
     clearTimeout(this.idleT);
+    clearTimeout(this.nudgeT);
   }
   later(fn: () => void, ms: number) { this.timers.push(setTimeout(fn, ms)); }
+  /** The student did something: restart the inactivity timers (Asha's wiggle, the "Tap here!" pill). */
   armIdle() {
     clearTimeout(this.idleT);
-    if (this.state.idle) this.setState({ idle: false });
+    clearTimeout(this.nudgeT);
+    if (this.state.idle || this.state.nudge) this.setState({ idle: false, nudge: false });
     this.idleT = setTimeout(() => this.setState({ idle: true }), IDLE_MS);
+    this.nudgeT = setTimeout(() => this.setState({ nudge: true }), NUDGE_MS);
   }
 
   // ---------- navigation ----------

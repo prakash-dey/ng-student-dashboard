@@ -50,14 +50,6 @@ export function ReadyCheck({ v }: { v: V }) {
                 </Fragment>
               ))}
             </div>
-            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
-              <span style="font-weight: 800; font-size: var(--fs-body-s); color: #475569">{v.t.testLang}</span>
-              {(v.testLangChips || []).map((c: any, i0: number) => (
-                <Fragment key={i0}>
-                  <button onClick={c.pick} style={c.style}>{c.label}</button>
-                </Fragment>
-              ))}
-            </div>
           </div>
         </>
       ) : null}

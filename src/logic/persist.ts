@@ -5,7 +5,7 @@ import { fresh, type AppState } from './state';
 
 const TRANSIENT: (keyof AppState)[] = [
   'phase', 'run', 'course', 'tab', 'camp', 'toast', 'toastXp', 'toastEmo', 'toastCol', 'mini', 'miniKey', 'section',
-  'dialog', 'jump', 'lineKey', 'typing', 'idle', 'voice', 'now', 'walking', 'walkT', 'count', 'placeOpen', 'placeQuery',
+  'dialog', 'jump', 'lineKey', 'typing', 'idle', 'nudge', 'voice', 'now', 'walking', 'walkT', 'count', 'placeOpen', 'placeQuery',
   'help', 'xp', 'xpPulse', 'xpGain', 'micOff', 'camOff', 'editing', 'openSchool',
 ];
 const PASS_MARK = 3;

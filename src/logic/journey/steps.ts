@@ -32,7 +32,7 @@ export function stepConfig(c: Ctx, x: StepInputs) {
   const nav = (pill: string) => Object.assign(cfg, { hasNav: true, navBack: true, hasNavPill: true, navPill: pill });
   const next = (step: string) => () => { if (!s.toast) x.advance(step); };
   const roundName = isLr ? t.lr : t.cfr;
-  const mapPrimary = [() => app.go('ready'), () => app.go('intro', { round: 'lr', dayIdx: 0, time: null }), () => app.go('intro', { round: 'cfr', dayIdx: 0, time: null }), () => app.celebrate('sel')][lv];
+  const mapPrimary = [() => app.go('testLang'), () => app.go('intro', { round: 'lr', dayIdx: 0, time: null }), () => app.go('intro', { round: 'cfr', dayIdx: 0, time: null }), () => app.celebrate('sel')][lv];
 
   switch (sc) {
     case 'login': regNav(t.askLogin, t.subLogin); cfg.navBack = false; cfg.hasHelp = false; if (s.loginDone) footer(t.next, next('login')); break;
@@ -57,7 +57,9 @@ export function stepConfig(c: Ctx, x: StepInputs) {
       else if (s.tourStop < 4) secondary(t.skip, () => app.go('login'));
       break;
     case 'map': cfg.ask = t.mapAsk[lv]; footer(t.lvlBtn[lv], mapPrimary, s.walking); if (s.lvl > 1) secondary(t.myResults, () => app.go('history')); break;
-    case 'ready': cfg.ask = t.askReady; cfg.sub = t.subReady; footer(t.imReady, () => app.startCountdown()); break;
+    // the test language gets its own page so it is not missed
+    case 'testLang': cfg.ask = t.askTestLang; cfg.sub = t.subTestLang; nav(t.lvlTitle[0]); footer(t.next, () => app.go('ready'), !s.testLang); break;
+    case 'ready': cfg.ask = t.askReady; cfg.sub = t.subReady; nav(t.lvlTitle[0]); footer(t.imReady, () => app.startCountdown()); break;
     case 'test':
       Object.assign(cfg, { ask: t.testAsk[s.qi], hasNav: true, navClose: true, hasNavPill: true, navPill: x.timer.mm, hasPill: true, pill: x.timer.qHead, pillStyle: PINK_PILL, hasFooter: true, hasPrimary: true });
       // the timer pill turns amber in the last 5 minutes

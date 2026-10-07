@@ -24,6 +24,8 @@ export function landingVals(app: AppLogic) {
     ...stories(t),
     isP1: s.page === 1, isP2: s.page === 2, isP3: s.page === 3, isP4: s.page === 4, isP5: s.page === 5, isP6: s.page === 6,
     isSoft: s.page > 1,
+    // "Tap here!" pill: only after 30s without any input
+    showNudge: s.nudge,
     walking: false, standing: s.phase >= 1, showCta: s.phase >= 2 && s.page === 1, showBird: true,
     reveal: () => set({ page: 2 }),
     goP1: () => set({ page: 1 }),

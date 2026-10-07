@@ -50,7 +50,7 @@ function visibility(c: Ctx) {
     is: {
       login: sc === 'login', phone: sc === 'phone', photo: sc === 'photo', dob: sc === 'dob',
       category: sc === 'category', pincode: sc === 'pincode', school: sc === 'school', review: sc === 'review',
-      ready: sc === 'ready', countdown: sc === 'countdown', test: sc === 'test', submitting: sc === 'submitting', fail: sc === 'fail',
+      testLang: sc === 'testLang', ready: sc === 'ready', countdown: sc === 'countdown', test: sc === 'test', submitting: sc === 'submitting', fail: sc === 'fail',
       intro: sc === 'intro', slot: sc === 'slot', call: sc === 'call', history: sc === 'history', consent: sc === 'consent', travel: sc === 'travel', ticket: sc === 'confirm' || sc === 'booked', pending: sc === 'pending',
       letter: sc === 'letter', checklist: sc === 'checklist', whatsapp: sc === 'whatsapp', mapCard: sc === 'map', tour: sc === 'tour', campus: sc === 'campus',
     },
@@ -61,6 +61,8 @@ function visibility(c: Ctx) {
 function goBack(c: Ctx) {
   const { s, sc, app } = c;
   return () => {
+    if (sc === 'testLang') return app.go('map', { walking: false, walkT: 1 });
+    if (sc === 'ready') return app.go('testLang');
     if (sc === 'slot') return app.go('intro');
     if (sc === 'confirm') return app.go('slot');
     if (sc === 'history') return s.joined ? app.go('cel', { cel: 'campus', xpGain: 500 }) : app.go('map', { walking: false, walkT: 1 });
@@ -94,8 +96,8 @@ export function journeyVals(app: AppLogic) {
     // feedback overlays
     hasToast: !!s.toast, toastText: s.toast, toastUi: toastUi(c),
     hasMini: !!s.mini, miniText: s.mini, hasSection: !!s.section, sectionText: s.section, hasDialog: !!s.dialog,
-    // the "Tap here!" pill shows above the main button whenever it is enabled
-    idleNudge: cfg.hasPrimary && !cfg.primaryDisabled && !s.toast && !s.dialog,
+    // the "Tap here!" pill shows above the main button when it is enabled and the student has been inactive for 30s
+    idleNudge: s.nudge && cfg.hasPrimary && !cfg.primaryDisabled && !s.toast && !s.dialog,
     // Asha: typing dots right after a screen change, then the line (alternating keys restart the animation)
     typing: s.typing, notTyping: !s.typing, parA: s.lineKey % 2 === 0, parB: s.lineKey % 2 === 1,
     ashaCls: s.idle ? 'asha-wiggle' : 'asha-say',

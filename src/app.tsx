@@ -43,7 +43,22 @@ export function App() {
       });
     };
     addEventListener('resize', onResize);
-    return () => { removeEventListener('resize', onResize); logic.componentWillUnmount?.(); logic.onChange = null; };
+    // any real input counts as activity: restarts the inactivity timers ("Tap here!" pill after 30s)
+    let lastInput = 0;
+    const onInput = () => {
+      const now = performance.now();
+      if (now - lastInput < 500) return;
+      lastInput = now;
+      logic.armIdle();
+    };
+    const INPUT_EVENTS = ['pointerdown', 'keydown', 'wheel', 'touchmove'] as const;
+    INPUT_EVENTS.forEach((e) => addEventListener(e, onInput, { passive: true, capture: true }));
+    return () => {
+      INPUT_EVENTS.forEach((e) => removeEventListener(e, onInput, { capture: true }));
+      removeEventListener('resize', onResize);
+      logic.componentWillUnmount?.();
+      logic.onChange = null;
+    };
   }, []);
 
   return <Design v={logic.renderVals()} />;

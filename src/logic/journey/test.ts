@@ -9,7 +9,6 @@ const RETRY_DAYS = 15;
 const LETTERS = ['A', 'B', 'C', 'D'];
 const TIP_ICONS = ['M4 4h16v16H4zM8 8h3M13 8h3M8 12h8M8 16h8', 'M4 19V5a2 2 0 012-2h13v16H6a2 2 0 00-2 2zm0 0a2 2 0 002 2h13', 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z'];
 const TIP_COLORS = ['#F59E0B', '#0EA5E9', '#8B5CF6'];
-const TEST_LANGS: [Lang, string][] = [['en', 'English'], ['hi', 'हिंदी'], ['mr', 'मराठी']];
 
 /** Question bank in the chosen test language: [question, options, correct index]. */
 export const questions = (lang: Lang) => I18N[lang].extra.quiz as [string, string[], number][];
@@ -65,14 +64,10 @@ export function testVals(c: Ctx) {
         tile: 'width:46px;height:46px;flex-shrink:0;border-radius:14px;display:flex;align-items:center;justify-content:center;background:' + col,
       })),
       readyGrid: 'display:grid;gap:10px;grid-template-columns:repeat(' + (D ? 2 : 1) + ',minmax(0,1fr))',
-      testLangChips: TEST_LANGS.map(([code, label]) => {
-        const on = code === testLang;
-        return { label, pick: () => c.set({ testLang: code }), style: 'min-height:40px;padding:0 14px;border-radius:999px;cursor:pointer;font-weight:800;font-size:' + FS.body + ';' + (on ? 'background:#E91E63;color:#FFFFFF;border:2px solid #BE185D;' : 'background:#FFFFFF;color:#BE185D;border:2px solid #FBCFE8;') };
-      }),
       // "submitting" equaliser bars
       bars: [0, 1, 2, 3, 4].map((k) => ({ style: 'width:16px;height:90px;border-radius:8px;transform-origin:bottom;animation-delay:' + k * 0.15 + 's;background:' + ['#EC4899', '#F59E0B', '#10B981', '#0EA5E9', '#8B5CF6'][k] })),
       cnt: { c3: s.count === 3, c2: s.count === 2, c1: s.count === 1, go: s.count <= 0 },
-      skipWait: () => app.go('ready', { answers: {}, qi: 0 }),
+      skipWait: () => app.go('testLang', { answers: {}, qi: 0 }),
     },
   };
 }
